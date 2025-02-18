@@ -48,7 +48,7 @@ Ajoutez ici vos profils LinkedIn :
 - [Maissa Hasni ](https://www.linkedin.com/in/maissa-hasni-380248241/)
 - [Hamza Chater  ](https://www.linkedin.com/in/profilcollaborateur)
 - [Nada Louhichi ](https://www.linkedin.com/in/nada-louhichi/)
-- [@Zeineb Daghfous](https://www.linkedin.com/in/profilcollaborateur)
+- [Zeineb Daghfous](https://www.linkedin.com/in/profilcollaborateur)
 
 
 
