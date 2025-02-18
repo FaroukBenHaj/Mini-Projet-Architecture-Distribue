@@ -17,15 +17,15 @@ L'application suit une approche basée sur les microservices et comprend plusieu
 ## Technologies Utilisées 🛠️
 - **Backend** : Spring Boot, Spring Cloud (pour microservices), Spring Data JPA
 - **Frontend** : Angular
-- **Base de données** : PostgreSQL
+- **Base de données** : H2 , SQL 
 - **Authentification** : Keycloak
 - **Communication interservices** : REST API, Kafka (pour événements asynchrones)
 
 ## Installation et Exécution 🚀
 ### Prérequis
 - Java 17+
-- Spring Boot
-- Angular CLI
+- Spring boot
+- Node.js et Angular CLI
 - PostgreSQL
 - Docker (optionnel pour déploiement avec conteneurs)
 
@@ -34,11 +34,10 @@ L'application suit une approche basée sur les microservices et comprend plusieu
    ```sh
    git clone https://github.com/votre-repository.git
    cd votre-repository
-   ```
 
 ## Auteurs 👥
-- **Badiaa Bouhdid** - Tuteur 
-- **Algorythme** - Nom d'équipe
+- **Badiaa Bouhdid** - Tuteur
+- **Algorythme** - Nom De l'equipe
 
 ## Profils LinkedIn 🔗
 Ajoutez ici vos profils LinkedIn :
