@@ -44,11 +44,10 @@ Ajoutez ici vos profils LinkedIn :
 - [Badiaa Bouhdid](https://www.linkedin.com/in/badiabouhdid/)
 - [Mohamed Farouk Ben Haj Amor ](https://www.linkedin.com/in/mohamed-farouk-ben-haj-amor/)
 - [Safa Ben Mustpha ](https://www.linkedin.com/in/safa-ben-mustapha-a54989226/)
-- [Maissa Hasni ](https://www.linkedin.com/in/profilcollaborateur)
+- [Maissa Hasni ](https://www.linkedin.com/in/maissa-hasni-380248241/)
 - [Hamza Chater  ](https://www.linkedin.com/in/profilcollaborateur)
 - [Nada Louhichi ](https://www.linkedin.com/in/nada-louhichi/)
 - [@Zeineb Daghfous](https://www.linkedin.com/in/profilcollaborateur)
 
-## License 📜
-Ce projet est sous licence MIT. Consultez `LICENSE` pour plus de détails.
+
 
