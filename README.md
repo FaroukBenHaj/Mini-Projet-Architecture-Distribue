@@ -24,7 +24,8 @@ L'application suit une approche basée sur les microservices et comprend plusieu
 ## Installation et Exécution 🚀
 ### Prérequis
 - Java 17+
-- Node.js et Angular CLI
+- Spring Boot
+- Angular CLI
 - PostgreSQL
 - Docker (optionnel pour déploiement avec conteneurs)
 
