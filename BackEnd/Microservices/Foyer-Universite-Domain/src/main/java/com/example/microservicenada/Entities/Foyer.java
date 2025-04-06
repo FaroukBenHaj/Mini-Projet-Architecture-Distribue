@@ -1,5 +1,6 @@
 package com.example.microservicenada.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 @Entity
@@ -13,7 +14,8 @@ public class Foyer {
     private String nom;
     private int capacite;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "universite_id", referencedColumnName = "id")
     private Universite universite;
 }

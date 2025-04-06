@@ -36,4 +36,10 @@ class FoyerController {
         foyerService.deleteFoyer(id);
         return ResponseEntity.noContent().build();
     }
+    // PUT endpoint to update an existing Foyer
+    @PutMapping("/{id}")
+    public ResponseEntity<Foyer> updateFoyer(@PathVariable Long id, @RequestBody Foyer foyerDetails) {
+        Foyer updatedFoyer = foyerService.updateFoyer(id, foyerDetails);
+        return ResponseEntity.ok(updatedFoyer);  // Return the updated Foyer
+    }
 }

@@ -27,4 +27,19 @@ public class FoyerService {
     public void deleteFoyer(Long id) {
         foyerRepository.deleteById(id);
     }
+
+    // New method for updating a Foyer
+    public Foyer updateFoyer(Long id, Foyer foyerDetails) {
+        // Check if the Foyer exists
+        Foyer foyer = foyerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Foyer not found with id: " + id));
+
+        // Update the foyer fields
+        foyer.setNom(foyerDetails.getNom());
+        foyer.setCapacite(foyerDetails.getCapacite());
+        foyer.setUniversite(foyerDetails.getUniversite()); // This will update the universite as well if needed
+
+        // Save the updated foyer
+        return foyerRepository.save(foyer);
+    }
 }

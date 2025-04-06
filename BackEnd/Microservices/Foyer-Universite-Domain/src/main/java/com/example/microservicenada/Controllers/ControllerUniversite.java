@@ -1,12 +1,27 @@
 package com.example.microservicenada.Controllers;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.microservicenada.Entities.Universite;
 import com.example.microservicenada.Services.UniversiteService;
 
+
+import org.springframework.http.*;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+
+
 
 @RestController
 @RequestMapping("/universites")
@@ -37,5 +52,66 @@ public class ControllerUniversite {
     public ResponseEntity<Void> deleteUniversite(@PathVariable Long id) {
         universiteService.deleteUniversite(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Universite> updateUniversite(@PathVariable Long id, @RequestBody Universite updatedUniversite) {
+        Universite result = universiteService.updateUniversite(id, updatedUniversite);
+        if (result != null) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/export/pdf")
+    public ResponseEntity<byte[]> exportUniversitesToPdf() {
+        try {
+            // Create a temporary file
+            String fileName = "universites_export_" + System.currentTimeMillis() + ".pdf";
+            universiteService.exportUniversiteToPdf(fileName);
+
+            // Read the file back into byte array
+            byte[] pdfBytes = Files.readAllBytes(Paths.get(fileName));
+
+            // Set response headers
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDispositionFormData("filename", "universites_export.pdf");
+            headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+            // Delete the temporary file
+            Files.deleteIfExists(Paths.get(fileName));
+
+            return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+        } catch (IOException e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+    @GetMapping("/export/excel")
+    public ResponseEntity<InputStreamResource> exportUniversitesToExcel() {
+        try {
+            // Create a temporary file
+            String fileName = "universites_export_" + System.currentTimeMillis() + ".xlsx";
+            universiteService.exportUniversiteToExcel(fileName);
+
+            // Create input stream from the file
+            File file = new File(fileName);
+            FileInputStream fileInputStream = new FileInputStream(file);
+
+            // Set response headers
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_TYPE, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=universites_export.xlsx");
+            headers.add(HttpHeaders.CACHE_CONTROL, "must-revalidate, post-check=0, pre-check=0");
+
+            // Return the response
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .contentLength(file.length())
+                    .body(new InputStreamResource(fileInputStream));
+
+        } catch (IOException e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 }
