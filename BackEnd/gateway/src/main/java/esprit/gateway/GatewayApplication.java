@@ -32,9 +32,9 @@ public class GatewayApplication {
 				.route("Hebergement_Domain",
 						r -> r.path("/Hebergement_Domain/**")
 								.uri("lb://Hebergement_Domain"))
-				.route("Universite-Foyer",
-						r->r.path("/Universite-Foyer/**")
-								.uri("lb://Universite-Foyer"))
+				.route("universite-foyer", r -> r.path("/Universite-Foyer/**")
+						.uri("lb://UNIVERSITE-FOYER"))
+
 				.build();
 
 	}
