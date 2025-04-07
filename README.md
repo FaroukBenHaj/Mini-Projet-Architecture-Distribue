@@ -32,8 +32,8 @@ L'application suit une approche basée sur les microservices et comprend plusieu
 ### Étapes
 1. **Cloner le dépôt** :
    ```sh
-   git clone https://github.com/votre-repository.git
-   cd votre-repository
+   git clone https://github.com/FaroukBenHaj/Mini-Projet-Architecture-Distribue.git
+   cd Mini-Projet-Architecture-Distribue
 
 ## Auteurs 👥
 - **Badiaa Bouhdid** - Tuteur
