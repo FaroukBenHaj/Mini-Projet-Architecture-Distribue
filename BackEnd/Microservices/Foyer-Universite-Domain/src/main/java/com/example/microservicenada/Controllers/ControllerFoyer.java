@@ -42,4 +42,7 @@ class FoyerController {
         Foyer updatedFoyer = foyerService.updateFoyer(id, foyerDetails);
         return ResponseEntity.ok(updatedFoyer);  // Return the updated Foyer
     }
+
+
+
 }

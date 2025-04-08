@@ -1,4 +1,5 @@
 package com.example.microservicenada.Services;
+import com.example.microservicenada.Entities.Foyer;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -45,8 +46,8 @@ public class UniversiteService {
         return universiteRepository.findById(id)
                 .map(universite -> {
                     universite.setNom(updatedUniversite.getNom());
-                    universite.setAdresse(updatedUniversite.getAdresse());
-                    universite.setEmail(updatedUniversite.getEmail());
+                    universite.setVille(updatedUniversite.getVille());
+                    universite.setPays(updatedUniversite.getPays());universite.setEmail(updatedUniversite.getEmail());
                     universite.setFoyer(updatedUniversite.getFoyer());
                     return universiteRepository.save(universite);
                 })
@@ -63,10 +64,11 @@ public class UniversiteService {
         Row headerRow = sheet.createRow(0);
         headerRow.createCell(0).setCellValue("ID");
         headerRow.createCell(1).setCellValue("Name");
-        headerRow.createCell(2).setCellValue("Address");
-        headerRow.createCell(3).setCellValue("Email");
-        headerRow.createCell(4).setCellValue("Foyer Name");
-        headerRow.createCell(5).setCellValue("Foyer Capacity");
+        headerRow.createCell(2).setCellValue("City");
+        headerRow.createCell(3).setCellValue("Country");
+        headerRow.createCell(4).setCellValue("Email");
+        headerRow.createCell(5).setCellValue("Foyer Name");
+        headerRow.createCell(6).setCellValue("Foyer Capacity");
 
         // Populate rows with data
         int rowNum = 1;
@@ -74,13 +76,13 @@ public class UniversiteService {
             Row row = sheet.createRow(rowNum++);
             row.createCell(0).setCellValue(universite.getId());
             row.createCell(1).setCellValue(universite.getNom());
-            row.createCell(2).setCellValue(universite.getAdresse());
-            row.createCell(3).setCellValue(universite.getEmail());
+            row.createCell(2).setCellValue(universite.getVille());
+            row.createCell(3).setCellValue(universite.getPays());
+            row.createCell(4).setCellValue(universite.getEmail());
 
             if (universite.getFoyer() != null) {
-                row.createCell(4).setCellValue(universite.getFoyer().getNom());
-                row.createCell(5).setCellValue(universite.getFoyer().getCapacite());
-            }
+                row.createCell(5).setCellValue(universite.getFoyer().getNom());
+                row.createCell(6).setCellValue(universite.getFoyer().getCapacite()); }
         }
 
         // Write the Excel file to disk
@@ -89,6 +91,7 @@ public class UniversiteService {
         }
         workbook.close();
     }
+
     public void exportUniversiteToPdf(String fileName) throws IOException {
         List<Universite> universites = universiteRepository.findAll();
 
@@ -101,14 +104,15 @@ public class UniversiteService {
                     .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER)
                     .setFontSize(16));
 
-            // Create table with 6 columns
-            float[] columnWidths = {50f, 100f, 150f, 100f, 100f, 80f};
+            // Create table with 7 columns (added one for country)
+            float[] columnWidths = {50f, 100f, 100f, 100f, 100f, 100f, 80f};
             Table table = new Table(columnWidths);
 
             // Add headers
             table.addHeaderCell(new Cell().add(new Paragraph("ID")));
             table.addHeaderCell(new Cell().add(new Paragraph("Name")));
-            table.addHeaderCell(new Cell().add(new Paragraph("Address")));
+            table.addHeaderCell(new Cell().add(new Paragraph("City")));
+            table.addHeaderCell(new Cell().add(new Paragraph("Country")));
             table.addHeaderCell(new Cell().add(new Paragraph("Email")));
             table.addHeaderCell(new Cell().add(new Paragraph("Foyer Name")));
             table.addHeaderCell(new Cell().add(new Paragraph("Foyer Capacity")));
@@ -117,7 +121,8 @@ public class UniversiteService {
             for (Universite universite : universites) {
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(universite.getId()))));
                 table.addCell(new Cell().add(new Paragraph(universite.getNom())));
-                table.addCell(new Cell().add(new Paragraph(universite.getAdresse())));
+                table.addCell(new Cell().add(new Paragraph(universite.getVille())));
+                table.addCell(new Cell().add(new Paragraph(universite.getPays())));
                 table.addCell(new Cell().add(new Paragraph(universite.getEmail())));
 
                 if (universite.getFoyer() != null) {
@@ -137,4 +142,79 @@ public class UniversiteService {
                     .setFontSize(10));
         }
     }
+
+    /* public List<Universite> advancedFilter(
+            String nom, String ville, String pays,
+            String email, String foyerNom,
+            Integer minCapacity, Integer maxCapacity,
+            MatchMode matchMode) {
+
+        return universiteRepository.findAll().stream()
+                // Direct field filters
+                .filter(u -> matchText(u.getNom(), nom, matchMode))
+                .filter(u -> matchText(u.getVille(), ville, matchMode))
+                .filter(u -> matchText(u.getPays(), pays, matchMode))
+                .filter(u -> matchText(u.getEmail(), email, matchMode))
+
+                // Foyer filters
+                .filter(u -> foyerNom == null ||
+                        (u.getFoyer() != null &&
+                                matchText(u.getFoyer().getNom(), foyerNom, matchMode)))
+                .filter(u -> checkCapacity(u.getFoyer(), minCapacity, maxCapacity))
+                .toList();
+    }
+
+    // Text matching utility
+    private boolean matchText(String value, String searchTerm, MatchMode mode) {
+        if (searchTerm == null) return true;
+        if (value == null) return false;
+
+        String val = value.toLowerCase();
+        String term = searchTerm.toLowerCase();
+
+        return switch (mode) {
+            case EXACT -> val.equals(term);
+            case STARTS_WITH -> val.startsWith(term);
+            case ENDS_WITH -> val.endsWith(term);
+            case CONTAINS -> val.contains(term);
+            case REGEX -> val.matches(term);
+        };
+    }
+
+    // Capacity filter utility
+    private boolean checkCapacity(Foyer foyer, Integer min, Integer max) {
+        if (foyer == null) return min == null && max == null;
+        return (min == null || foyer.getCapacite() >= min) &&
+                (max == null || foyer.getCapacite() <= max);
+    }
+
+    // Match mode enum
+    public enum MatchMode {
+        EXACT, STARTS_WITH, ENDS_WITH, CONTAINS, REGEX;
+
+        public static MatchMode fromString(String mode) {
+            try {
+                return valueOf(mode.toUpperCase());
+            } catch (Exception e) {
+                return CONTAINS; // default fallback
+            }
+        }
+    } */
+    public List<Universite> filterUniversites(String nom, String ville, String pays, String email) {
+        return universiteRepository.findAll().stream()
+                .filter(u -> nom == null || Optional.ofNullable(u.getNom())
+                        .map(s -> s.toLowerCase().contains(nom.toLowerCase()))
+                        .orElse(false))
+                .filter(u -> ville == null || Optional.ofNullable(u.getVille())
+                        .map(s -> s.toLowerCase().contains(ville.toLowerCase()))
+                        .orElse(false))
+                .filter(u -> pays == null || Optional.ofNullable(u.getPays())
+                        .map(s -> s.toLowerCase().contains(pays.toLowerCase()))
+                        .orElse(false))
+                .filter(u -> email == null || Optional.ofNullable(u.getEmail())
+                        .map(s -> s.toLowerCase().contains(email.toLowerCase()))
+                        .orElse(false))
+                .toList();
+    }
 }
+

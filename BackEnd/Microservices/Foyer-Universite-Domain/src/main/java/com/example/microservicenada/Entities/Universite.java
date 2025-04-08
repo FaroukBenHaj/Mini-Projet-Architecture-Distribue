@@ -12,7 +12,8 @@ public class Universite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
-    private String adresse;
+    private String ville;
+    private String pays;
     private String email;
 
     @OneToOne(mappedBy = "universite", cascade = CascadeType.ALL)

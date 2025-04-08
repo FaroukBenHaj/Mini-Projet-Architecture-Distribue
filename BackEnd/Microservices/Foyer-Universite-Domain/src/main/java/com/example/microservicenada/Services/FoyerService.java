@@ -42,4 +42,8 @@ public class FoyerService {
         // Save the updated foyer
         return foyerRepository.save(foyer);
     }
+
+
+
+
 }

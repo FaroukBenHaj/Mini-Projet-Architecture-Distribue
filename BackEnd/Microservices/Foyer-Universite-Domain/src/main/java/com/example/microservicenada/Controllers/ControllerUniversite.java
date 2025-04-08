@@ -29,7 +29,6 @@ import java.util.Optional;
 public class ControllerUniversite {
 
 
-
     private final UniversiteService universiteService;
 
     @GetMapping
@@ -63,6 +62,7 @@ public class ControllerUniversite {
             return ResponseEntity.notFound().build();
         }
     }
+
     @GetMapping("/export/pdf")
     public ResponseEntity<byte[]> exportUniversitesToPdf() {
         try {
@@ -87,6 +87,7 @@ public class ControllerUniversite {
             return ResponseEntity.internalServerError().build();
         }
     }
+
     @GetMapping("/export/excel")
     public ResponseEntity<InputStreamResource> exportUniversitesToExcel() {
         try {
@@ -114,4 +115,35 @@ public class ControllerUniversite {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+   /* @GetMapping("/advanced-filter")
+    public ResponseEntity<List<Universite>> advancedFilter(
+            @RequestParam(required = false) String nom,
+            @RequestParam(required = false) String ville,
+            @RequestParam(required = false) String pays,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String foyerNom,
+            @RequestParam(required = false) Integer minCapacity,
+            @RequestParam(required = false) Integer maxCapacity,
+            @RequestParam(defaultValue = "contains") String searchMode) {
+
+        try {
+            List<Universite> result = universiteService.advancedFilter(
+                    nom, ville, pays, email,
+                    foyerNom, minCapacity, maxCapacity,
+                    UniversiteService.MatchMode.fromString(searchMode));
+            return ResponseEntity.ok(result);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    } */
+// In ControllerUniversite.java
+   @GetMapping("/filter")
+   public List<Universite> filterUniversites(
+           @RequestParam(required = false) String nom,
+           @RequestParam(required = false) String ville,
+           @RequestParam(required = false) String pays,
+           @RequestParam(required = false) String email) {
+       return universiteService.filterUniversites(nom, ville,pays, email);
+   }
 }

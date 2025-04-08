@@ -6,6 +6,9 @@
       <list>
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
         <option value="$PROJECT_DIR$/Eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/Microservices/Hebergement-Domain/pom.xml" />
+        <option value="$PROJECT_DIR$/Microservices/Notification/pom.xml" />
+        <option value="$PROJECT_DIR$/Microservices/Foyer-Universite-Domain/pom.xml" />
       </list>
     </option>
   </component>
