@@ -6,11 +6,13 @@
       <list>
         <option value="$PROJECT_DIR$/BackEnd/Hebergement-Domain/pom.xml" />
         <option value="$PROJECT_DIR$/BackEnd/Eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Reservation/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/ConfigServer/pom.xml" />
       </list>
     </option>
-    <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbrsdk-17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17 (2)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
