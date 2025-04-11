@@ -118,7 +118,47 @@ Foyer Fields:
 - nom
 - capacite
 - universite_id (FK)
+████████████████████████████████████████████████████
+█                POSTMAN GUIDE                     █
+████████████████████████████████████████████████████
 
+Base URL: http://localhost:8089/tpfoyer
+
+Example Requests:
+
+Create University:
+
+POST /universites
+Content-Type: application/json
+
+{
+  "nom": "ESPRIT",
+  "ville": "Ariana",
+  "pays": "Tunisie",
+  "email": "contact@esprit.tn"
+}
+
+Advanced Housing Filter:
+
+GET /foyers/advanced-filter?search=Central&capacite=150
+
+AI Query:
+
+POST /api/assistant/ask
+
+Content-Type: application/json
+
+{
+  "question": "Show foyers in Sousse with capacity over 100"
+}
+
+Tips:
+
+-Use environment variables: {{baseUrl}} = http://localhost:8089/tpfoyer
+
+-Replace placeholders ({id}) with actual values
+
+-Use dynamic variables: {{$randomCity}}, {{$randomEmail}}
 ████████████████████████████████████████████████████
 █                AI EXAMPLES                      █
 ████████████████████████████████████████████████████
