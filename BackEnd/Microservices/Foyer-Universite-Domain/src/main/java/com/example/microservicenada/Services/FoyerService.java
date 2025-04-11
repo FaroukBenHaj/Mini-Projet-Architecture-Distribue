@@ -1,6 +1,9 @@
 package com.example.microservicenada.Services;
 
+import com.example.microservicenada.Entities.Universite;
+import com.example.microservicenada.Repositories.UniversiteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.microservicenada.Entities.Foyer;
 import com.example.microservicenada.Repositories.FoyerRepository;
@@ -10,7 +13,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class FoyerService {
+    @Autowired
     private final FoyerRepository foyerRepository;
+    @Autowired
+    private UniversiteRepository universiteRepository;
+
 
     public List<Foyer> getAllFoyers() {
         return foyerRepository.findAll();
@@ -43,7 +50,21 @@ public class FoyerService {
         return foyerRepository.save(foyer);
     }
 
+    // Assign a Foyer to a Universite
+    public Foyer assignFoyerToUniversite(Long foyerId, Long universiteId) {
+        Foyer foyer = foyerRepository.findById(foyerId)
+                .orElseThrow(() -> new RuntimeException("Foyer not found"));
+        Universite universite = universiteRepository.findById(universiteId)
+                .orElseThrow(() -> new RuntimeException("Universite not found"));
 
+        // Set the relationship on both sides
+        foyer.setUniversite(universite);
+        universite.setFoyer(foyer);
+
+        // Save both entities
+        universiteRepository.save(universite);
+        return foyerRepository.save(foyer);
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.microservicenada.Controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import com.example.microservicenada.Services.FoyerService;
 @RequestMapping("/foyers")
 @RequiredArgsConstructor
 class FoyerController {
+    @Autowired
     private final FoyerService foyerService;
 
     @GetMapping
@@ -44,5 +46,13 @@ class FoyerController {
     }
 
 
+
+        @PostMapping("/{foyerId}/assign-to-universite/{universiteId}")
+        public ResponseEntity<Foyer> assignToUniversite(
+                @PathVariable Long foyerId,
+                @PathVariable Long universiteId) {
+            Foyer foyer = foyerService.assignFoyerToUniversite(foyerId, universiteId);
+            return ResponseEntity.ok(foyer);
+        }
 
 }

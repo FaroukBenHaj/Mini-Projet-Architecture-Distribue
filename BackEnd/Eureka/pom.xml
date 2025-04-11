@@ -57,6 +57,12 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>itext-releases</id>
+			<url>https://repo.itextsupport.com/releases/</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>

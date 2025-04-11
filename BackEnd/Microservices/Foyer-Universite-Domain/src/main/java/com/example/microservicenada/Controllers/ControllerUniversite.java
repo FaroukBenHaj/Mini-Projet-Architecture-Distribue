@@ -137,7 +137,10 @@ public class ControllerUniversite {
             return ResponseEntity.badRequest().build();
         }
     } */
+
 // In ControllerUniversite.java
+
+    //Ajout de foyers associés si possible à faire aprés
    @GetMapping("/filter")
    public List<Universite> filterUniversites(
            @RequestParam(required = false) String nom,
@@ -147,3 +150,5 @@ public class ControllerUniversite {
        return universiteService.filterUniversites(nom, ville,pays, email);
    }
 }
+
+

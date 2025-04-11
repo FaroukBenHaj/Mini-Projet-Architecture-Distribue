@@ -1,5 +1,6 @@
 package com.example.microservicenada.Services;
 import com.example.microservicenada.Entities.Foyer;
+import com.example.microservicenada.Repositories.FoyerRepository;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -11,6 +12,7 @@ import com.example.microservicenada.Repositories.UniversiteRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
@@ -24,6 +26,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UniversiteService {
+    @Autowired
     private final UniversiteRepository universiteRepository;
 
     public List<Universite> getAllUniversites() {
@@ -215,6 +218,24 @@ public class UniversiteService {
                         .map(s -> s.toLowerCase().contains(email.toLowerCase()))
                         .orElse(false))
                 .toList();
+    }
+    @Autowired
+    private FoyerRepository foyerRepository;
+
+    // Assign a Universite to a Foyer
+    public Universite assignUniversiteToFoyer(Long universiteId, Long foyerId) {
+        Universite universite = universiteRepository.findById(universiteId)
+                .orElseThrow(() -> new RuntimeException("Universite not found"));
+        Foyer foyer = foyerRepository.findById(foyerId)
+                .orElseThrow(() -> new RuntimeException("Foyer not found"));
+
+        // Set the relationship on both sides
+        universite.setFoyer(foyer);
+        foyer.setUniversite(universite);
+
+        // Save both entities
+        foyerRepository.save(foyer);
+        return universiteRepository.save(universite);
     }
 }
 
