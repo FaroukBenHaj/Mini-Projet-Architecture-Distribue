@@ -44,4 +44,11 @@ public interface FoyerRepository extends JpaRepository<Foyer, Long> {
     // Method 3: With university filtering
     @Query("SELECT f FROM Foyer f JOIN f.universite u WHERE f.capacite > :capacity AND u.ville = :city")
     List<Foyer> findByCapacityAndCity(@Param("capacity") int capacity, @Param("city") String city);
-}
+
+    @Query("SELECT f FROM Foyer f JOIN f.universite u WHERE f.capacite > :capacity AND LOWER(u.ville) = LOWER(:city)")
+    List<Foyer> findByCapaciteGreaterThanAndUniversiteVille(
+            @Param("capacity") int capacity,
+            @Param("city") String city
+    );
+    @Query("SELECT f FROM Foyer f JOIN f.universite u WHERE LOWER(u.ville) = LOWER(:city)")
+    List<Foyer> findByUniversiteVilleIgnoreCase(@Param("city") String city); }

@@ -12,6 +12,9 @@ import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,12 +22,20 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 @Service
 public class OllamaService {
-
+    private static final Logger log = LoggerFactory.getLogger(OllamaService.class);
     private final RestTemplate restTemplate;
     private final FoyerRepository foyerRepository;
     private final UniversiteRepository universiteRepository;
+
+    // Nearby cities configuration
+    private static final Map<String, String> NEARBY_CITIES = Map.of(
+            "Sousse", "Monastir (30km), Mahdia (45km)",
+            "Mahdia", "Sousse (45km), Monastir (60km)",
+            "Tunis", "Ariana (8km), Ben Arous (12km)"
+    );
 
     public OllamaService(RestTemplate restTemplate,
                          FoyerRepository foyerRepository,
@@ -36,133 +47,155 @@ public class OllamaService {
 
     @Retryable(maxAttempts = 3, backoff = @Backoff(delay = 1000))
     public String getResponse(String prompt) {
-        // First try to answer from database
-        Optional<String> dbAnswer = tryAnswerFromDatabase(prompt);
-        if (dbAnswer.isPresent()) {
-            return dbAnswer.get();
-        }
+        String normalizedPrompt = normalizeInput(prompt);
+        Optional<String> dbAnswer = tryAnswerFromDatabase(normalizedPrompt);
+        return dbAnswer.orElseGet(() -> askMistral(normalizedPrompt));
+    }
 
-        // If not a database question, use Mistral
-        return askMistral(prompt);
+    private String normalizeInput(String input) {
+        return input.trim().toLowerCase();
     }
 
     private Optional<String> tryAnswerFromDatabase(String question) {
         try {
-            // Handle capacity queries
-            if (question.toLowerCase().contains("capacity") &&
-                    question.toLowerCase().contains("foyer")) {
-
-                if (question.contains("over") || question.contains("more than")) {
-                    int capacity = extractNumber(question);
-                    List<Foyer> foyers = foyerRepository.findByCapaciteGreaterThan(capacity);
-                    return Optional.of(formatFoyerList(foyers));
-                }
-                else if (question.contains("average")) {
-                    // Existing average calculation
-                    if (question.toLowerCase().contains("compare") ||
-                            question.toLowerCase().contains("vs")) {
-                        // NEW ENHANCED COMPARISON CODE GOES HERE
-                        Double avg = foyerRepository.getAverageCapacity();
-                        String comparisonContext = """
-                        Database Result:
-                        - Average foyer capacity: %.2f
-                        
-                        Additional Context:
-                        - Typical student dorm capacity range: 50-200
-                        - Hotel room capacity is typically 1-2 (single/double)
-                        - Hostel dorm capacity is typically 4-12
-                        """.formatted(avg);
-
-                        return Optional.of(comparisonContext);
-                    } else {
-                        // Original simple average response
-                        Double avg = foyerRepository.getAverageCapacity();
-                        return Optional.of("Average foyer capacity: " + avg);
-                    }
-                }
+            if (question.contains("capacity") && question.contains("foyer")) {
+                return handleCapacityQuery(question);
             }
-
-            // Handle university location queries
-            if (question.toLowerCase().matches(".*(foyer|university).*(in|at).*")) {
-                String ville = extractCity(question);
-                List<Foyer> foyers = foyerRepository.findByUniversiteVille(ville);
-                return Optional.of(formatFoyerList(foyers));
+            if (question.matches(".*(foyer|university|residence).*(in|at|near).*")) {
+                return handleLocationQuery(question);
             }
-
         } catch (Exception e) {
-            // Fall back to LLM if database query fails
+            log.error("Database query failed", e);
         }
         return Optional.empty();
     }
 
-    private String askMistral(String prompt) {
-        String ollamaUrl = "http://localhost:11434/api/generate";
+    private Optional<String> handleCapacityQuery(String question) {
+        if (question.matches(".*(over|more than|greater than).*")) {
+            int capacity = extractNumber(question);
+            String city = extractCity(question);
+            List<Foyer> foyers = city.isEmpty() ?
+                    foyerRepository.findByCapaciteGreaterThan(capacity) :
+                    foyerRepository.findByCapaciteGreaterThanAndUniversiteVille(capacity, city);
+            return Optional.of(formatFoyerList(foyers, city));
+        }
+        if (question.contains("average")) {
+            return handleAverageCapacityQuery(question);
+        }
+        return Optional.empty();
+    }
 
-        // System message to guide Mistral's responses
+    private Optional<String> handleAverageCapacityQuery(String question) {
+        Double avg = foyerRepository.getAverageCapacity();
+        if (question.contains("compare") || question.contains("vs")) {
+            String comparison = """
+                📊 Database Facts:
+                - Average capacity: %.2f beds
+                - Range: 50-300 beds
+                
+                🆚 International Comparison:
+                • France: 80-150 beds
+                • Germany: 100-200 beds
+                """.formatted(avg);
+            return Optional.of(comparison);
+        }
+        return Optional.of(String.format("Average foyer capacity: %.2f beds", avg));
+    }
+
+    private Optional<String> handleLocationQuery(String question) {
+        String city = extractCity(question);
+        if (city.isEmpty()) return Optional.empty();
+
+        List<Foyer> foyers = foyerRepository.findByUniversiteVilleIgnoreCase(city);
+        return Optional.of(formatFoyerList(foyers, city));
+    }
+
+    private String formatFoyerList(List<Foyer> foyers, String requestedCity) {
+        if (foyers.isEmpty()) {
+            String nearby = getNearbyCities(requestedCity);
+            return String.format(
+                    "No foyers found in %s matching your criteria.\n\n" +
+                            "🚗 Nearby options: %s",
+                    requestedCity,
+                    nearby.isEmpty() ? "No nearby cities in database" : nearby
+            );
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("🏛️ Foyers in %s:\n", requestedCity));
+
+        foyers.stream()
+                .filter(f -> f.getUniversite().getVille().equalsIgnoreCase(requestedCity))
+                .forEach(f -> sb.append(String.format(
+                        "• %s\n  - Capacity: %d\n  - University: %s\n",
+                        f.getNom(),
+                        f.getCapacite(),
+                        f.getUniversite().getNom()
+                )));
+
+        long count = foyers.stream()
+                .filter(f -> f.getUniversite().getVille().equalsIgnoreCase(requestedCity))
+                .count();
+
+        sb.append(String.format("\nTotal found: %d foyers", count));
+
+        if (count <= 2) {
+            String nearby = getNearbyCities(requestedCity);
+            if (!nearby.isEmpty()) {
+                sb.append("\n\nℹ️ Nearby cities: ").append(nearby);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    private String getNearbyCities(String city) {
+        return NEARBY_CITIES.getOrDefault(city, "");
+    }
+
+    private String askMistral(String prompt) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
         String systemMessage = """
-                 ROLE:
-                                                             You are a Tunisian University Housing Assistant specializing in foyers étudiants (student residences).
-                                                            \s
-                                                             RESPONSE RULES:
-                                                            \s
-                                                             1. HOUSING QUESTIONS (foyers/universities/assignments):
-                                                                • FIRST display exact database facts
-                                                                • THEN add analysis with:
-                                                                  - Bullet points
-                                                                  - Tunisian context
-                                                                  - French terms (foyer universitaire, cité universitaire)
-                                                                • Example structure:
-                                                                  "Database shows:
-                                                                  - [Fact 1]
-                                                                  - [Fact 2]
-                                                                  \s
-                                                                   Context:
-                                                                   • [Comparison to Tunisian averages]
-                                                                   • [Local terminology explanation]"
-                                                            \s
-                                                             2. COMPARISONS:
-                                                                • Always compare to:
-                                                                  - Tunisian averages (foyers: 50-300 beds)
-                                                                  - International equivalents (dorms, hostels)
-                                                                • Use:
-                                                                  "Compared to [X], Tunisian foyers are [Y] because..."
-                                                            \s
-                                                             3. GENERAL QUESTIONS:
-                                                                • Concise factual answers (1-2 sentences max)
-                                                                • When unsure: "I don't have information about [topic]. Would you like housing-related help?"
-                                                            \s
-                                                             TECHNICAL NOTES:
-                                                             - All capacities in student beds
-                                                             - Tunisian terms > French terms > English terms
-                                                             - Never invent statistics
+            You are a Tunisian university housing expert. Respond with:
+            1. Facts first, then analysis
+            2. Use Tunisian terms (foyer universitaire)
+            3. Never invent statistics
             """;
 
         Map<String, Object> request = new HashMap<>();
         request.put("model", "mistral");
         request.put("prompt", systemMessage + "\n\nUSER QUESTION: " + prompt);
         request.put("stream", false);
-        request.put("options", Map.of("temperature", 0.5));
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        request.put("options", Map.of(
+                "temperature", 0.3,
+                "top_p", 0.9,
+                "max_tokens", 500
+        ));
 
         try {
             ResponseEntity<Map> response = restTemplate.postForEntity(
-                    ollamaUrl,
+                    "http://localhost:11434/api/generate",
                     new HttpEntity<>(request, headers),
                     Map.class);
 
-            return response.getBody().get("response").toString();
+            return cleanResponse(response.getBody().get("response").toString());
         } catch (Exception e) {
-            return "I couldn't process your request. Please try again later.";
+            log.error("Ollama request failed", e);
+            return "Service unavailable. Please try again later.";
         }
     }
 
-    // Helper methods (extractNumber, extractCity, formatFoyerList)
+    private String cleanResponse(String response) {
+        return response.replaceAll("(?m)^\\s*$", "")
+                .replaceAll("\"\"\"", "")
+                .trim();
+    }
+
     private int extractNumber(String text) {
         try {
-            Pattern pattern = Pattern.compile("\\d+");
-            Matcher matcher = pattern.matcher(text);
+            Matcher matcher = Pattern.compile("\\d+").matcher(text);
             return matcher.find() ? Integer.parseInt(matcher.group()) : 0;
         } catch (NumberFormatException e) {
             return 0;
@@ -170,48 +203,20 @@ public class OllamaService {
     }
 
     private String extractCity(String text) {
-        String[] tunisianCities = {
-                "Tunis", "Sfax", "Sousse", "Kairouan", "Bizerte",
-                "Gabès", "Ariana", "Gafsa", "Monastir", "Ben Arous",
-                "Nabeul", "Kasserine", "Mahdia", "Medenine", "Zaghouan",
-                "Béja", "Jendouba", "Kébili", "Le Kef", "Manouba",
-                "Médenine", "Siliana", "Tataouine", "Tozeur"
-        };
-
-        // First check for exact matches
-        for (String city : tunisianCities) {
-            if (text.toLowerCase().contains(city.toLowerCase())) {
-                return city;
-            }
-        }
-
-        // Then check for common misspellings/alternatives
-        Map<String, String> alternatives = Map.of(
-                "tunisia", "Tunis",
+        Map<String, String> cityMap = Map.of(
+                "tunis", "Tunis",
+                "sousse", "Sousse",
                 "sfax", "Sfax",
-                "soussa", "Sousse",
-                "monastir", "Monastir"
+                "monastir", "Monastir",
+                "nabeul", "Nabeul",
+                "mahdia", "Mahdia"
         );
 
-        for (Map.Entry<String, String> entry : alternatives.entrySet()) {
-            if (text.toLowerCase().contains(entry.getKey())) {
-                return entry.getValue();
-            }
-        }
-
-        return "";
+        return cityMap.entrySet().stream()
+                .filter(e -> text.contains(e.getKey()))
+                .findFirst()
+                .map(Map.Entry::getValue)
+                .orElse("");
     }
 
-    private String formatFoyerList(List<Foyer> foyers) {
-        if (foyers.isEmpty()) return "No matching foyers found";
-
-        StringBuilder sb = new StringBuilder();
-        for (Foyer f : foyers) {
-            sb.append(f.getNom())
-                    .append(" (Capacity: ").append(f.getCapacite())
-                    .append(", ").append(f.getUniversite().getNom())
-                    .append(")\n");
-        }
-        return sb.toString();
-    }
 }
