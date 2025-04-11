@@ -32,5 +32,16 @@ public interface FoyerRepository extends JpaRepository<Foyer, Long> {
     long countByCapaciteBetween(int min, int max);
 
     long countByCapaciteGreaterThan(int capacity);
+    @Query("SELECT f FROM Foyer f JOIN f.universite u WHERE u.ville = :ville")
+    List<Foyer> findByUniversiteVille(@Param("ville") String ville);
+    // Method 1: Derived query
+    List<Foyer> findByCapaciteGreaterThan(int capacity);
 
+    // Method 2: Custom JPQL query (alternative)
+    @Query("SELECT f FROM Foyer f WHERE f.capacite > :capacity")
+    List<Foyer> findFoyersWithCapacityAbove(@Param("capacity") int capacity);
+
+    // Method 3: With university filtering
+    @Query("SELECT f FROM Foyer f JOIN f.universite u WHERE f.capacite > :capacity AND u.ville = :city")
+    List<Foyer> findByCapacityAndCity(@Param("capacity") int capacity, @Param("city") String city);
 }
