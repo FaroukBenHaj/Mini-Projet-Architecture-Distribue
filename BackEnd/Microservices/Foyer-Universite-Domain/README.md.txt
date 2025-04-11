@@ -1,159 +1,139 @@
-# 🏢 Université-Foyer Microservice
+# UNIVERSITY HOUSING MANAGEMENT SYSTEM
+A comprehensive Spring Boot + Angular application for managing university housing (foyers) and their associations with universities.
 
-This microservice is part of the larger **Foyer Management System**, built using **Spring Boot** in **IntelliJ IDEA**. It manages university residences and implements a **one-to-one relationship** between `Université` and `Foyer`.
+████████████████████████████████████████████████████
+█                KEY FEATURES                     █
+████████████████████████████████████████████████████
 
----
+== BACKEND (Spring Boot) ==
 
-## ✨ Features
+* University Management:
+  - CRUD operations for universities
+  - Filter by name, city, country or email
+  - Export data to Excel and PDF formats
+  - Assign universities to housing facilities
 
-- Full **CRUD operations** for:
-  - `Université`
-  - `Foyer`
-- **One-to-One Mapping** between `Université` and `Foyer`
-- Export functionality:
-  - 📄 Export university data (with linked foyer) to **Excel** and **PDF**
-- Eureka Client enabled for service registration in a microservices ecosystem
+* Housing (Foyer) Management:
+  - CRUD operations for student housing
+  - Advanced capacity-based queries
+  - Statistics and analytics
+  - Assign housing to universities
 
----
+* Statistics & Analytics:
+  - Housing count per city
+  - Total capacity per city
+  - Capacity range distribution
+  - Summary statistics (avg/min/max)
 
-## 🧱 Architecture Overview
+* AI Assistant:
+  - Natural language processing
+  - Ollama/Mistral integration
+  - Smart fact-based responses
+  - Nearby city suggestions
 
-| Layer            | Description                                                      |
-|------------------|------------------------------------------------------------------|
-| **Entities**     | JPA entities for `Université` and `Foyer`                        |
-| **Repositories** | Spring Data JPA interfaces for data access                       |
-| **Services**     | Business logic for managing universities and foyers              |
-| **Controllers**  | RESTful APIs for CRUD and export operations                      |
+== FRONTEND (Angular) ==
+- Modern responsive UI
+- Interactive data visualizations
+- AI assistant interface
+- Mobile-friendly design
 
----
+████████████████████████████████████████████████████
+█              TECHNOLOGY STACK                   █
+████████████████████████████████████████████████████
 
-## 🛠️ Tech Stack
+>> Backend:
+- Framework: Spring Boot 3.x
+- Database: JPA/Hibernate + Mysql
+- AI Integration: Ollama/Mistral
+- Documentation: SpringDoc OpenAPI
+- Reporting: Apache POI (Excel), iText (PDF)
 
-- **Java 17+**
-- **Spring Boot**
-- **Spring Data JPA**
-- **Lombok**
-- **Apache POI** (Excel export)
-- **iText/OpenPDF** (PDF export)
-- **MySQL**
-- **Maven**
-- **Eureka Client**
+>> Frontend:
+- Angular 15+
+- Angular Material
+- Chart.js
+- RxJS
 
----
+████████████████████████████████████████████████████
+█                API ENDPOINTS                    █
+████████████████████████████████████████████████████
 
-## 🌐 Postman API Endpoints
+=== Universities ===
+GET    /universites               - List all universities
+GET    /universites/{id}          - Get university by ID  
+POST   /universites               - Create new university
+PUT    /universites/{id}          - Update university
+DELETE /universites/{id}          - Delete university
+GET    /universites/filter        - Filter universities
+GET    /universites/export/excel  - Export to Excel
+GET    /universites/export/pdf    - Export to PDF
+POST   /universites/{id}/assign-foyer/{foyerId} - Assign to foyer
 
-> Base URL: `http://localhost:8080`
+=== Housing (Foyers) ===
+GET    /foyers                    - List all foyers
+GET    /foyers/{id}               - Get foyer by ID
+POST   /foyers                    - Create new foyer  
+PUT    /foyers/{id}               - Update foyer
+DELETE /foyers/{id}               - Delete foyer
+POST   /foyers/{id}/assign-universite/{universiteId} - Assign to university
 
----
+=== Statistics ===
+GET /api/statistics/foyer-count-per-city          - Housing count by city
+GET /api/statistics/total-capacity-per-city       - Total capacity by city  
+GET /api/statistics/capacity-range-distribution   - Capacity ranges
+GET /api/statistics/summary-statistics            - Summary stats
 
-### 🏫 Université Endpoints
+=== AI Assistant ===
+POST /api/assistant/ask - Submit natural language query
 
-#### ✅ Create Université
-```http
-POST /universites
-Content-Type: application/json
-Body:
+████████████████████████████████████████████████████
+█               INSTALLATION                      █
+████████████████████████████████████████████████████
 
-json
-Copier
-Modifier
-{
-  "id": 0,
-  "nom": "Université de Tunis",
-  "adresse": "Tunis",
-  "email": "contact@utunis.tn",
-  "foyer": {
-    "id": 1
-  }
-}
-♻️ Update Université
-http
-Copier
-Modifier
-PUT /universites/{id}
-Content-Type: application/json
-Replace {id} with the Université ID.
-Body is similar to Create.
+>> Backend Setup:
+1. Install Java 17+
+2. Configure database in application.properties 
+3. Run: mvn spring-boot:run
 
-❌ Delete Université
-http
-Copier
-Modifier
-DELETE /universites/{id}
-📥 Get Université by ID
-http
-Copier
-Modifier
-GET /tpfoyer/universites/{id}
-Returns a Université and its linked Foyer.
+>> Frontend Setup:
+1. Install Node.js 16+
+2. Run: npm install
+3. Run: ng serve
 
-🔁 Alternative Create (namespaced route)
-http
-Copier
-Modifier
-POST /tpfoyer/universites
-Used for organizing routes logically under /tpfoyer.
+████████████████████████████████████████████████████
+█             DATABASE SCHEMA                     █
+████████████████████████████████████████████████████
 
-📊 Export Universités to Excel
-http
-Copier
-Modifier
-GET /tpfoyer/universites/export/excel
-🧾 Export Universités to PDF
-http
-Copier
-Modifier
-GET /tpfoyer/universites/export/pdf
-🏠 Foyer Endpoints
-✅ Create Foyer
-http
-Copier
-Modifier
-POST /foyers
-or:
+UNIVERSITE (1) ----- (1) FOYER
 
-http
-Copier
-Modifier
-POST /tpfoyer/foyers
-♻️ Update Foyer
-http
-Copier
-Modifier
-PUT /tpfoyer/foyers/{id}
-Content-Type: application/json
-❌ Delete Foyer
-http
-Copier
-Modifier
-DELETE http://localhost:8089/tpfoyer/foyers/{id}
-Note: This endpoint runs on port 8089, not 8080.
+Universite Fields:
+- id (PK)
+- nom
+- ville  
+- pays
+- email
 
-📦 Project Context
-This microservice is one component of a modular Foyer Management Application. Other microservices may include user authentication, reservation handling, etc. Each service is registered with Eureka for easy discovery and integration via API Gateway or load balancers.
+Foyer Fields:
+- id (PK)
+- nom
+- capacite
+- universite_id (FK)
 
-📁 Project Setup
-Clone the repository
+████████████████████████████████████████████████████
+█                AI EXAMPLES                      █
+████████████████████████████████████████████████████
 
-Ensure MySQL is running
+The AI assistant understands queries like:
+- "Show foyers in Sousse with capacity over 100"
+- "What's the average capacity of foyers?"
+- "Compare Tunisian foyer capacities internationally"  
+- "What housing options exist near Mahdia?"
 
-Update application.properties with your DB configs
+████████████████████████████████████████████████████
+█             SCHOOL & CONTRIBUTOR                █
+████████████████████████████████████████████████████
 
-Start your Eureka Server
+SCHOOL: ESPRIT School of Engineering
 
-Run this microservice from IntelliJ or via mvn spring-boot:run
+CONTRIBUTOR: Nada Louhichi
 
-🧩 Related Services
-✅ Eureka Server (Service discovery)
-
-🔐 User Authentication Microservice
-
-🏨 Reservation Microservice
-
-🔍 Notes
-The API includes both direct (/universites) and namespaced (/tpfoyer/universites) endpoints for flexibility.
-
-Excel and PDF export functions bundle the university with its linked foyer.
-
-Avoid port conflicts if running multiple services locally.

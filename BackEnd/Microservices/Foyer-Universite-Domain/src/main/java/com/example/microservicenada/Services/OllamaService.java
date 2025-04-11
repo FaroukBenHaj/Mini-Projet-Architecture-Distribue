@@ -4,6 +4,8 @@ import com.example.microservicenada.Entities.Foyer;
 import com.example.microservicenada.Entities.Universite;
 import com.example.microservicenada.Repositories.FoyerRepository;
 import com.example.microservicenada.Repositories.UniversiteRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -22,6 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 @Service
 public class OllamaService {
