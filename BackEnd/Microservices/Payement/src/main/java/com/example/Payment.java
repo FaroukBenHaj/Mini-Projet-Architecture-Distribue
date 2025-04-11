@@ -1,9 +1,6 @@
 package com.example;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,11 +16,44 @@ public class Payment {
     private Long idPayment;
     private Double montant;
     private Date datePaiement;
-    private StatusPayment status;
+    @Enumerated(EnumType.STRING)
 
+    private StatusPayment status;
     public enum StatusPayment {
         PAYE, EN_COURS, ECHEC
     }
 
     // Getters and setters
+
+    public Long getIdPayment() {
+        return idPayment;
+    }
+
+    public void setIdPayment(Long idPayment) {
+        this.idPayment = idPayment;
+    }
+
+    public Double getMontant() {
+        return montant;
+    }
+
+    public void setMontant(Double montant) {
+        this.montant = montant;
+    }
+
+    public Date getDatePaiement() {
+        return datePaiement;
+    }
+
+    public void setDatePaiement(Date datePaiement) {
+        this.datePaiement = datePaiement;
+    }
+
+    public StatusPayment getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusPayment status) {
+        this.status = status;
+    }
 }
