@@ -1,37 +1,45 @@
 package tn.esprit.reservation;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
 public class Reservation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idReservation ;
 
-    private String idReservation ;
-    private Date AnneeUniversitaire;
+    @Temporal(TemporalType.DATE)
+    private Date anneeUniversitaire;
     private Boolean estValide;
 
-     public Reservation() {}
-    public Reservation(String idReservation, Date AnneeUniversitaire, Boolean estValide) {}
 
-    public String getIdReservation() {
+    public Reservation(Long idReservation, Date anneeUniversitaire, Boolean estValide) {
+        this.idReservation = idReservation;
+        this.anneeUniversitaire = anneeUniversitaire;
+        this.estValide = estValide;
+
+    }
+
+    public Reservation() {}
+
+
+
+    public Long getIdReservation() {
         return idReservation;
     }
 
-    public void setIdReservation(String idReservation) {
+    public void setIdReservation(Long idReservation) {
         this.idReservation = idReservation;
     }
 
     public Date getAnneeUniversitaire() {
-        return AnneeUniversitaire;
+        return anneeUniversitaire;
     }
 
     public void setAnneeUniversitaire(Date anneeUniversitaire) {
-        AnneeUniversitaire = anneeUniversitaire;
+        this.anneeUniversitaire = anneeUniversitaire;
     }
 
     public Boolean getEstValide() {
