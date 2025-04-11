@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  eureka-server:
+    build: ./Eureka
+    ports:
+      - "8762:8762"
+    networks:
+      - spring-net
+
+  config-server:
+    build: ./Server-config
+    ports:
+      - "8888:8888"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8762/eureka
+    networks:
+      - spring-net
+
+  api-gateway:
+    build: ./gateway
+    ports:
+      - "8020:8020"
+    depends_on:
+      - eureka-server
+      - config-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8762/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+    networks:
+      - spring-net
+
+  universite-foyer:
+    build: ./Microsevices/Foyer-Universite-Domain
+    ports:
+      - "8089:8089"
+    depends_on:
+      - eureka-server
+      - config-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8762/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+    networks:
+      - spring-net
+
+networks:
+  spring-net:
