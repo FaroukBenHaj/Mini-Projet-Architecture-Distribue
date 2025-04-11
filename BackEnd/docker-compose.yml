@@ -1,0 +1,40 @@
+
+services:
+  eureka:
+    build: ./eureka
+    image: zeinebdgfs/eureka:latest
+    container_name: eureka-container
+    ports:
+      - "8020:8761"
+    networks:
+      - microservices-network
+  gateway:
+    build: ./gateway
+    image: zeinebdgfs/gateway:latest
+    container_name: gateway-container
+    ports:
+      - "8013:8020"
+    depends_on:
+      - eureka
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
+  reservation-service:
+    build: ./Microservices/Reservation
+    image: zeinebdgfs/reservation:latest
+    container_name: reservation-container
+    ports:
+      - "8050:8082"
+    depends_on:
+      - eureka
+      - gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
+networks:
+    microservices-network:
+     driver: bridge
