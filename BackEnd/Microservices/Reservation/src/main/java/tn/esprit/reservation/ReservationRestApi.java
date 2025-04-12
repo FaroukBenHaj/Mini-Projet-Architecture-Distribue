@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -20,6 +23,9 @@ import java.util.Optional;
 public class ReservationRestApi {
     @Autowired
     private ReservationService reservationService;
+
+    @Autowired
+    private ReservationAIService reservationAIService;
 
     @PostMapping("/create")
     public Reservation createReservation(@RequestBody Reservation reservation) {
@@ -88,5 +94,33 @@ public class ReservationRestApi {
                     .body(new InputStreamResource(new ByteArrayInputStream(errorJson.getBytes())));
         }
     }
+    @GetMapping("/ai/recommendation")
+    public ResponseEntity<ReservationRecommendation> getReservationRecommendation(
+            @RequestParam String targetDate) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = format.parse(targetDate);
+            ReservationRecommendation recommendation = reservationAIService.getReservationRecommendation(date);
+            return ResponseEntity.ok(recommendation);
+        } catch (ParseException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/ai/forecast")
+    public ResponseEntity<?> getForecastForNextYear() {
+        try {
+            Map<String, Object> forecast = reservationAIService.predictNextYearReservations();
+            if (forecast == null || forecast.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(Map.of("error", "Could not generate forecast"));
+            }
+            return ResponseEntity.ok(forecast);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError()
+                    .body(Map.of("error", e.getMessage()));
+        }
+    }
 }
+
 
