@@ -33,6 +33,22 @@ Le microservice expose les endpoints suivants :
 ### 2. Fonctionnalités Additionnelles 🚀
 - **Statistiques par Année** : Analyse du nombre de réservations par année universitaire
 - **Export CSV** : Possibilité d'exporter les réservations validées au format CSV
+
+## 🤖 Intelligence Artificielle
+Notre microservice intègre des fonctionnalités d'IA pour optimiser le processus de réservation :
+
+### Système de Recommandation
+- Analyse des préférences des étudiants basée sur leurs réservations précédentes
+- Suggestions de logements personnalisées selon les habitudes et besoins
+
+### Prédiction de Disponibilité
+- Utilisation d'algorithmes prédictifs pour anticiper les taux d'occupation
+- Planification optimisée des capacités d'hébergement par année universitaire
+
+### Validation Automatique
+- Système de validation intelligent des réservations basé sur des critères prédéfinis
+- Réduction du temps de traitement des demandes de réservation
+
 ## 🔧 Service Layer
 
 Le `ReservationService` implémente la logique métier suivante :
