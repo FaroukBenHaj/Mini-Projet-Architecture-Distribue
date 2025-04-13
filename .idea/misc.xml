@@ -6,10 +6,17 @@
       <list>
         <option value="$PROJECT_DIR$/BackEnd/Hebergement-Domain/pom.xml" />
         <option value="$PROJECT_DIR$/BackEnd/Eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Keycloak/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Notification/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Payement/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Reservation/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" project-jdk-name="jbrsdk-17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" project-jdk-name="jbrsdk-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
