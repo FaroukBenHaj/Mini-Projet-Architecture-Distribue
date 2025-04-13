@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/BackEnd/Microservices/Notification/pom.xml" />
         <option value="$PROJECT_DIR$/BackEnd/Microservices/Payement/pom.xml" />
         <option value="$PROJECT_DIR$/BackEnd/Microservices/Reservation/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/ConfigServe/pom.xml" />
       </list>
     </option>
   </component>

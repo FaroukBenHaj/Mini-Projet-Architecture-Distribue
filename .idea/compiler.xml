@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Etudiant" />
+        <module name="config-server" />
         <module name="Reservation" />
         <module name="Hebergement-Domain" />
         <module name="candidat" />
@@ -27,6 +28,7 @@
       <module name="MicroserviceNada" options="-parameters" />
       <module name="Reservation" options="-parameters" />
       <module name="candidat" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="demo" options="-parameters" />
     </option>
   </component>
