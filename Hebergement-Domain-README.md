@@ -8,12 +8,6 @@ This microservice manages hostel accommodation blocks (Blocs) and rooms (Chambre
 ### 🏢 Bloc
 - Represents a hostel block/building
 - **Attributes**:
-<<<<<<< HEAD
-  - `idBloc`: Long (auto-generated) 🔑
-  - `nomBloc`: String (name of the block) 🏷️
-  - `capaciteBloc`: Long (capacity of the block) 🧑‍🤝‍🧑
-  - `myChambre`: Set<Chambre> (rooms in this block) �
-=======
     - `idBloc`: Long (auto-generated) 🔑
     - `nomBloc`: String (name of the block) 🏷️
     - `capaciteBloc`: Long (capacity of the block) 🧑‍🤝‍🧑
@@ -22,12 +16,6 @@ This microservice manages hostel accommodation blocks (Blocs) and rooms (Chambre
 ### 🚪 Chambre
 - Represents a room in a hostel block
 - **Attributes**:
-<<<<<<< HEAD
-  - `idChambre`: Long (auto-generated) 🔑
-  - `numeroChambre`: Long (room number) 🔢
-  - `typeC`: TypeChambre (room type enum) 🛌
-  - `bloc`: Bloc (the block this room belongs to) ↔️
-=======
     - `idChambre`: Long (auto-generated) 🔑
     - `numeroChambre`: Long (room number) 🔢
     - `typeC`: TypeChambre (room type enum) 🛌
