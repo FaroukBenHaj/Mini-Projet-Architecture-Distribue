@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="66a67a3b-18bc-4a2a-972c-72ae79ba1695" name="Changes" comment="backend and front and docker are done">
+      <change afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/notification/NotificationRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/eureka/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/eureka/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/gateway/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/gateway/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/candidat/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/notification/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/candidat/NotificationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/notification/NotificationApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/candidat/NotificationRespository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/notification/NotificationRespository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/candidat/NotificationRestApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/notification/NotificationRestApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/candidat/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/java/esprit/notification/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/SpringNotification/Notification/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/AngularNotification/Notification.css" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/AngularNotification/Notification.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/AngularNotification/Notification.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/AngularNotification/Notification.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/AngularNotification/Notification.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/AngularNotification/Notification.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2tDeZdrC5rgG7XSSN0HkJXUcc2s" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.BackEnd: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Notification-Domain&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LENOVO/Desktop/hse-service&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="66a67a3b-18bc-4a2a-972c-72ae79ba1695" name="Changes" comment="" />
+      <created>1739891128653</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739891128653</updated>
+      <workItem from="1739891129677" duration="103000" />
+      <workItem from="1740010675104" duration="21000" />
+      <workItem from="1744557135825" duration="398000" />
+      <workItem from="1744557627538" duration="73000" />
+      <workItem from="1744557708180" duration="4609000" />
+      <workItem from="1744563599808" duration="2393000" />
+      <workItem from="1744566513267" duration="52000" />
+      <workItem from="1744566746165" duration="23000" />
+      <workItem from="1744566782165" duration="15000" />
+      <workItem from="1744567405563" duration="1325000" />
+    </task>
+    <task id="LOCAL-00001" summary="backend and front and docker are done">
+      <option name="closed" value="true" />
+      <created>1744566258061</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1744566258061</updated>
+    </task>
+    <task id="LOCAL-00002" summary="backend and front and docker are done">
+      <option name="closed" value="true" />
+      <created>1744566343093</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1744566343093</updated>
+    </task>
+    <task id="LOCAL-00003" summary="backend and front and docker are done">
+      <option name="closed" value="true" />
+      <created>1744566368164</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1744566368164</updated>
+    </task>
+    <task id="LOCAL-00004" summary="backend and front and docker are done">
+      <option name="closed" value="true" />
+      <created>1744566390503</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1744566390503</updated>
+    </task>
+    <task id="LOCAL-00005" summary="backend and front and docker are done">
+      <option name="closed" value="true" />
+      <created>1744566402737</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744566402737</updated>
+    </task>
+    <task id="LOCAL-00006" summary="backend and front and docker are done">
+      <option name="closed" value="true" />
+      <created>1744566431151</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744566431151</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="backend and front and docker are done" />
+    <option name="LAST_COMMIT_MESSAGE" value="backend and front and docker are done" />
+  </component>
+</project>

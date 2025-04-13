@@ -1,0 +1,45 @@
+version: '3'
+services:
+  eureka-server:
+    build:
+      context: ./eureka-server  # Path to your Eureka server folder
+    image: eureka-server:latest
+    ports:
+      - "8761:8761"
+    networks:
+      - notification-network
+    environment:
+      - EUREKA_SERVER=true
+    depends_on:
+      - mysql  # If you have a database service like MySQL, add it here.
+
+  notification-service:
+    build:
+      context: ./notification-service  # Path to your Notification service folder
+    image: notification-service:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - notification-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      - eureka-server
+
+  gateway-service:
+    build:
+      context: ./gateway-service  # Path to your Gateway service folder
+    image: gateway-service:latest
+    ports:
+      - "8081:8081"
+    networks:
+      - notification-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      - eureka-server
+      - notification-service
+
+networks:
+  notification-network:
+    driver: bridge
