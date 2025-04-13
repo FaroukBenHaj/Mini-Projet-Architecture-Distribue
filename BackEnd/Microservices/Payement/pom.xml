@@ -8,7 +8,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>Payement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Payement</name>
 	<description>Demo project for Spring Boot</description>
@@ -79,6 +79,8 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+
 	</dependencies>
 
 	<build>
