@@ -44,16 +44,13 @@ export class HomePageComponent implements OnInit {
       color: 'var(--accent-color)'
     },
     {
-<<<<<<< HEAD
-=======
       title: 'Gestion des Finances',
       description: 'Faites vos payments en toute simplicité',
       icon: 'fas fa-cubes',
-      route: '/payment',
+      route: '/paiements',
       color: 'var(--accent-color)'
     },
     {
->>>>>>> 6afb873192323a0e9140209821625b5b28ab7dcf
       title: 'Gestion des Chambres',
       description: 'Administrez les chambres disponibles et leurs types.',
       icon: 'fas fa-bed',
