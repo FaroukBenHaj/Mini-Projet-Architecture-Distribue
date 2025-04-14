@@ -9,7 +9,7 @@ import tn.esprit.hebergementdomain.Services.BlocService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Bloc")
+@RequestMapping("/Hebergement/Bloc")
 public class BlocRestApi {
     @Autowired
     private BlocService blocService;

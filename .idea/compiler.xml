@@ -7,16 +7,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Etudiant" />
         <module name="Foyer-Universite-Domain" />
         <module name="Reservation" />
         <module name="Hebergement-Domain" />
         <module name="ConfigServe" />
-        <module name="candidat" />
         <module name="Keycloak" />
         <module name="Payement" />
         <module name="Eureka" />
         <module name="gateway" />
+        <module name="Notification" />
+      </profile>
+      <profile name="Annotation profile for Etudiant" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="Etudiant" />
       </profile>
     </annotationProcessing>
   </component>
@@ -28,9 +36,9 @@
       <module name="Foyer-Universite-Domain" options="-parameters" />
       <module name="Hebergement-Domain" options="-parameters" />
       <module name="Keycloak" options="-parameters" />
+      <module name="Notification" options="-parameters" />
       <module name="Payement" options="-parameters" />
       <module name="Reservation" options="-parameters" />
-      <module name="candidat" options="-parameters" />
       <module name="gateway" options="-parameters" />
     </option>
   </component>

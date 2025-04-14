@@ -30,8 +30,8 @@ public class GatewayApplication {
 						r -> r.path("/Reservation/**")
 								.uri("lb://Reservation"))
 				.route("Hebergement_Domain",
-						r -> r.path("/Hebergement_Domain/**")
-								.uri("lb://Hebergement_Domain"))
+						r -> r.path("/Hebergement/**")
+								.uri("http://localhost:8050"))
 				.build();
 
 	}
