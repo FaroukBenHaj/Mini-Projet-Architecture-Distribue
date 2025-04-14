@@ -28,9 +28,17 @@ public class PaymentService {
     // Update
     public Payment updatePayment(Long id, Payment paymentDetails) {
         Payment payment = getPaymentById(id);
+
+        // Handle case when payment is not found
+        if (payment == null) {
+            throw new ResourceNotFoundException("Payment not found for ID: " + id); // Or handle this as per your exception strategy
+        }
+
         payment.setMontant(paymentDetails.getMontant());
         payment.setDatePaiement(paymentDetails.getDatePaiement());
         payment.setStatus(paymentDetails.getStatus());
+
+        // Save the updated payment
         return paymentRepository.save(payment);
     }
 

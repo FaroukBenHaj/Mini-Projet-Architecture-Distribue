@@ -1,0 +1,55 @@
+<nav class="navbar">
+    <div class="container navbar-container">
+      <a class="navbar-brand" routerLink="/">
+        <i class="fas fa-building"></i> Campus Logement
+      </a>
+      
+      <button class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
+        <i class="fas" [ngClass]="isMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+      </button>
+      
+      <ul class="navbar-nav" [class.mobile-active]="isMenuOpen">
+        <li>
+          <a class="nav-link" routerLink="/" [class.active]="isActive('/')" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fas fa-home"></i> Accueil
+          </a>
+        </li>¨
+
+        <li>
+          <a class="nav-link" routerLink="/etudiants" [class.active]="isActive('/etudiants')" routerLinkActive="active">
+            <i class="fas fa-user-graduate"></i> Étudiants
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/foyers" [class.active]="isActive('/foyers')" routerLinkActive="active">
+            <i class="fas fa-building"></i> Foyers
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/blocs" [class.active]="isActive('/blocs')" routerLinkActive="active">
+            <i class="fas fa-cubes"></i> Blocs
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/paiements" [class.active]="isActive('/')" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fas fa-home"></i> Payment
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/chambres" [class.active]="isActive('/chambres')" routerLinkActive="active">
+            <i class="fas fa-bed"></i> Chambres
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/reservations" [class.active]="isActive('/reservations')" routerLinkActive="active">
+            <i class="fas fa-calendar-check"></i> Réservations
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/universites" [class.active]="isActive('/universites')" routerLinkActive="active">
+            <i class="fas fa-university"></i> Universités
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>

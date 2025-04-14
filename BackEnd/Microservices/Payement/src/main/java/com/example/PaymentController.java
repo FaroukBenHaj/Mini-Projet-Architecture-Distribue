@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/payments")
 public class PaymentController {
 
@@ -42,10 +43,17 @@ public class PaymentController {
         return ResponseEntity.ok(updatedPayment);
     }
 
+
+
     // Delete Payment
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/payments/{id}")
     public ResponseEntity<Void> deletePayment(@PathVariable Long id) {
-        paymentService.deletePayment(id);
-        return ResponseEntity.noContent().build();
+        if (id == 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();  // Prevent deleting with invalid ID like 0
+        }
+        paymentService.deletePayment(id);  // Call to service to delete the payment
+        return ResponseEntity.noContent().build();  // Return 204 status code for successful delete
     }
+
+
 }
