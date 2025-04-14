@@ -1,0 +1,41 @@
+
+services:
+  eureka:
+    build: ./eureka
+    image: projet/backend-eureka:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+
+  gateway:
+    build: ./gateway
+    image: projet/backend-gateway:latest
+    container_name: gateway-service
+    ports:
+      - "8055:8055"
+    depends_on:
+      - eureka
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
+  hebergement-service:
+    build: ./microservices/hebergement
+    image: projet/backend-hebergement-service:latest
+    container_name: hebergement-service
+    ports:
+      - "8050:8050"
+    depends_on:
+      - eureka
+      - gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge

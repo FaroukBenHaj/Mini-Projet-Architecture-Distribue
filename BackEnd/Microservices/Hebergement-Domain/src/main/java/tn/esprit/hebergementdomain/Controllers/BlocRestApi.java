@@ -1,6 +1,7 @@
 package tn.esprit.hebergementdomain.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.hebergementdomain.Entities.Bloc;
 import tn.esprit.hebergementdomain.Services.BlocService;
@@ -8,7 +9,7 @@ import tn.esprit.hebergementdomain.Services.BlocService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Bloc")
+@RequestMapping("/Hebergement/Bloc")
 public class BlocRestApi {
     @Autowired
     private BlocService blocService;
@@ -22,6 +23,14 @@ public class BlocRestApi {
     @PostMapping("/add_Bloc")
     public Bloc addBloc(@RequestBody Bloc bloc) {
         return blocService.addBloc(bloc);
+    }
+
+    @Value("${welcome.message}")
+    private String welcomeMessage;
+
+    @GetMapping("/welcome")
+    public String getWelcomeMessage() {
+        return welcomeMessage;
     }
 
 }
