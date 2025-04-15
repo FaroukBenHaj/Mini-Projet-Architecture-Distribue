@@ -22,7 +22,7 @@ public class GatewayApplication {
 						.uri("lb://Notification"))
 				.route("Payement",
 						r -> r.path("/Payement/**")
-								.uri("lb://Payement"))
+								.uri("http://localhost:8072"))
 				.route("Etudiant",
 						r -> r.path("/Etudiant/**")
 								.uri("lb://Etudiant"))
@@ -32,6 +32,7 @@ public class GatewayApplication {
 				.route("Hebergement_Domain",
 						r -> r.path("/Hebergement/**")
 								.uri("http://localhost:8050"))
+
 				.build();
 
 	}
