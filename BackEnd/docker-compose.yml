@@ -1,5 +1,18 @@
 
 services:
+  payment-service:
+    image: paymentimage:latest
+    container_name: paymentcontainer
+    ports:
+      - "8081:8070"  # Host:Container
+    depends_on:
+      - eureka
+      - gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
   eureka:
     build: ./eureka
     image: zeinebdgfs/eureka:latest
