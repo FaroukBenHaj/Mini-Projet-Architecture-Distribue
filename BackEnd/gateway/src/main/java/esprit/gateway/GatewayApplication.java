@@ -19,7 +19,7 @@ public class GatewayApplication {
 		return builder.routes()
 				.route("Payement",
 						r -> r.path("/Payement/**")
-								.uri("lb://Payement"))
+								.uri("lb://PAYEMENT"))
 				.route("Etudiant",
 						r -> r.path("/Etudiant/**")
 								.uri("lb://ETUDIANT"))
