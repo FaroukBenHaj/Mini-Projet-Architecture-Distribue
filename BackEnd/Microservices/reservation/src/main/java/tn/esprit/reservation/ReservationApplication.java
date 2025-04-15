@@ -10,8 +10,9 @@ import org.springframework.context.annotation.Bean;
 import java.util.Date;
 
 
-@EnableDiscoveryClient
 @SpringBootApplication
+@EnableDiscoveryClient
+
 public class ReservationApplication {
 
 	public static void main(String[] args) {

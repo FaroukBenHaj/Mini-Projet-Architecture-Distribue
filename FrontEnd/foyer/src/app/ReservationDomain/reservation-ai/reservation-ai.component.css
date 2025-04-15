@@ -1,0 +1,152 @@
+/* Minimalist Base Styles */
+:root {
+    --primary: #3f51b5;
+    --primary-light: #757de8;
+    --primary-dark: #002984;
+    --text: #2d3748;
+    --text-light: #718096;
+    --bg: #f8fafc;
+    --border: #e2e8f0;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --danger: #f44336;
+    --info: #00bcd4;
+  }
+  
+  /* Card & Layout */
+  .card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+  
+  .card-header {
+    border-bottom: none;
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+  
+  /* Typography */
+  h3, h4, h5 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  h5 {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Form Elements */
+  .form-control {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.1);
+  }
+  
+  /* Buttons */
+  .btn {
+    border-radius: 8px;
+    padding: 0.625rem 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+  }
+  
+  .btn-outline-info {
+    border-color: var(--info);
+    color: var(--info);
+  }
+  
+  .btn-outline-info:hover {
+    background-color: rgba(0, 188, 212, 0.08);
+  }
+  
+  /* Badges & Indicators */
+  .badge {
+    padding: 0.5em 0.75em;
+    border-radius: 6px;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+  
+  /* Recommendation Display */
+  .fs-4 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .list-group-item {
+    border: none;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .list-group-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* Utility Classes */
+  .text-primary {
+    color: var(--primary) !important;
+  }
+  
+  .bg-primary {
+    background-color: var(--primary) !important;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .mt-4 {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .card-body {
+      padding: 1.5rem;
+    }
+    
+    .row > div {
+      margin-bottom: 1.5rem;
+    }
+  }

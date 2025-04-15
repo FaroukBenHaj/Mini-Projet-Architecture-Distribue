@@ -4,7 +4,11 @@
     <file url="file://$PROJECT_DIR$/BackEnd/ConfigServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BackEnd/Eureka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BackEnd/Hebergement-Domain/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/BackEnd/Microservices/Reservation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BackEnd/Microservices/Etudiant/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BackEnd/Microservices/Payement/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BackEnd/Microservices/reservation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BackEnd/gateway/src/main/java" charset="UTF-8" />
   </component>
 </project>

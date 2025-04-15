@@ -9,7 +9,16 @@
         <option value="$PROJECT_DIR$/BackEnd/Microservices/Reservation/pom.xml" />
         <option value="$PROJECT_DIR$/BackEnd/gateway/pom.xml" />
         <option value="$PROJECT_DIR$/BackEnd/ConfigServer/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/pom.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Payement/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/BackEnd/Microservices/Payement/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17 (2)" project-jdk-type="JavaSDK">

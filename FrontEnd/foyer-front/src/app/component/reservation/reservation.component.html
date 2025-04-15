@@ -1,0 +1,127 @@
+<div class="page-container">
+    <div class="page-header">
+      <div class="container">
+        <div class="header-content">
+          <div>
+            <h1><i class="fas fa-calendar-check"></i> Gestion des Réservations</h1>
+            <p>Consultez, ajoutez, modifiez ou supprimez des informations sur les réservations.</p>
+          </div>
+          <button class="btn" [ngClass]="showForm ? 'btn-secondary' : 'btn-primary'" (click)="toggleForm()">
+            <i class="fas" [ngClass]="showForm ? 'fa-times' : 'fa-plus'"></i>
+            {{ showForm ? 'Annuler' : (isEditMode ? 'Annuler la modification' : 'Ajouter une réservation') }}
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container">
+      <!-- Messages -->
+      <div class="alert alert-success" *ngIf="successMessage">
+        <i class="fas fa-check-circle"></i> {{ successMessage }}
+      </div>
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+      </div>
+  
+      <!-- Formulaire d'ajout/modification -->
+      <div class="form-section" [class.active]="showForm">
+        <div class="card">
+          <h2>{{ isEditMode ? 'Modifier une réservation' : 'Ajouter une nouvelle réservation' }}</h2>
+          <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="anneeUniversitaire" class="form-label">Année Universitaire</label>
+                <input type="date" id="anneeUniversitaire" formControlName="anneeUniversitaire" class="form-control" 
+                  [ngClass]="{'invalid': reservationForm.controls['anneeUniversitaire'].invalid && reservationForm.controls['anneeUniversitaire'].touched}">
+                <div class="error-message" *ngIf="reservationForm.controls['anneeUniversitaire'].invalid && reservationForm.controls['anneeUniversitaire'].touched">
+                  La date est requise.
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="estValide" class="form-label">Statut</label>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="estValide" formControlName="estValide">
+                  <label for="estValide">
+                    {{ reservationForm.controls['estValide'].value ? 'Valide' : 'Non valide' }}
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline" (click)="resetForm()">Annuler</button>
+              <button type="submit" class="btn btn-primary" [disabled]="reservationForm.invalid || isLoading">
+                <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+                {{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+  
+      <!-- Liste des réservations -->
+      <div class="list-section">
+        <div class="list-header">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Rechercher une réservation..." [(ngModel)]="searchTerm" (ngModelChange)="applyFilter()">
+            <button *ngIf="searchTerm" (click)="searchTerm = ''; applyFilter()">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="list-count">
+            {{ filteredReservations.length }} {{ filteredReservations.length > 1 ? 'réservations' : 'réservation' }}
+          </div>
+        </div>
+  
+        <div class="loading-spinner" *ngIf="isLoading">
+          <i class="fas fa-spinner fa-spin"></i>
+          <span>Chargement...</span>
+        </div>
+  
+        <div class="empty-state" *ngIf="!isLoading && filteredReservations.length === 0">
+          <div class="empty-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Aucune réservation trouvée</h3>
+          <p *ngIf="searchTerm">Aucun résultat pour "{{ searchTerm }}". Essayez une autre recherche.</p>
+          <p *ngIf="!searchTerm">Commencez par ajouter votre première réservation.</p>
+          <button class="btn btn-primary" (click)="showForm = true" *ngIf="!showForm">
+            <i class="fas fa-plus"></i> Ajouter une réservation
+          </button>
+        </div>
+  
+        <div class="cards-list" *ngIf="!isLoading && filteredReservations.length > 0">
+          <div class="reservation-card" *ngFor="let reservation of filteredReservations">
+            <div class="reservation-info">
+              <div class="reservation-avatar" [ngClass]="{'valid': reservation.estValide, 'invalid': !reservation.estValide}">
+                <i class="fas" [ngClass]="reservation.estValide ? 'fa-check' : 'fa-times'"></i>
+              </div>
+              <div class="reservation-details">
+                <h3>Réservation #{{ reservation.idReservation }}</h3>
+                <div class="reservation-meta">
+                  <span class="reservation-date">
+                    <i class="fas fa-calendar-alt"></i> 
+                    {{ reservation.anneeUniversitaire ? (reservation.anneeUniversitaire | date:'dd/MM/yyyy') : 'Non spécifié' }}
+                  </span>
+                  <span class="reservation-status" [ngClass]="{'valid': reservation.estValide, 'invalid': !reservation.estValide}">
+                    <i class="fas" [ngClass]="reservation.estValide ? 'fa-check-circle' : 'fa-times-circle'"></i>
+                    {{ reservation.estValide ? 'Valide' : 'Non valide' }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="reservation-actions">
+              <button class="btn-icon" (click)="editReservation(reservation)" title="Modifier">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn-icon delete" (click)="deleteReservation(reservation.idReservation || 0)" title="Supprimer">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

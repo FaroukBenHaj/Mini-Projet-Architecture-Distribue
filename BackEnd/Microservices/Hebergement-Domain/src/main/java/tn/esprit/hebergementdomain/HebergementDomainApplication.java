@@ -9,8 +9,9 @@ import tn.esprit.hebergementdomain.Entities.Bloc;
 import tn.esprit.hebergementdomain.Reposiitories.BlocRepository;
 
 @SpringBootApplication
-
 @EnableDiscoveryClient
+
+
 public class HebergementDomainApplication {
 
 	public static void main(String[] args) {

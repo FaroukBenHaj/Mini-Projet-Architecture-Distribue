@@ -1,0 +1,103 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">
+              <i class="bi bi-robot me-2"></i> AI Reservation Assistant
+            </h3>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              Our AI assistant can help you determine the best time to make your reservation based on historical data and demand patterns.
+            </p>
+            
+            <form [formGroup]="recommendationForm" (ngSubmit)="getRecommendation()">
+              <div class="mb-3">
+                <label for="targetDate" class="form-label">When do you want to stay?</label>
+                <input 
+                  type="date" 
+                  class="form-control" 
+                  id="targetDate" 
+                  formControlName="targetDate"
+                  [min]="minDate"
+                >
+                <div *ngIf="recommendationForm.get('targetDate')?.invalid && recommendationForm.get('targetDate')?.touched" class="text-danger">
+                  Please select a valid date
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-primary" [disabled]="recommendationForm.invalid || loading">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                Get Smart Recommendation
+              </button>
+              
+              <button type="button" class="btn btn-outline-info ms-2" (click)="toggleForecast()">
+                {{ showForecast ? 'Hide' : 'Show' }} Demand Forecast
+              </button>
+            </form>
+            
+            <div *ngIf="error" class="alert alert-danger mt-3">
+              {{ error }}
+            </div>
+            
+            <!-- Recommendation Results -->
+            <div *ngIf="recommendation" class="mt-4">
+              <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                  <h4 class="mb-0">Your Personalized Recommendation</h4>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5>Optimal Booking Date</h5>
+                      <p class="fs-4 fw-bold text-primary">{{ formatDate(recommendation.recommendedDate) }}</p>
+                      
+                      <h5>Success Probability</h5>
+                      <p class="fs-4 fw-bold" [ngClass]="getProbabilityColorClass(recommendation.successProbability)">
+                        {{ (recommendation.successProbability * 100) | number:'1.0-0' }}%
+                      </p>
+                      
+                      <h5>Predicted Demand</h5>
+                      <span class="badge fs-6" [ngClass]="getDemandBadgeClass(recommendation.predictedDemandLevel)">
+                        {{ recommendation.predictedDemandLevel }}
+                      </span>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <h5>Why This Recommendation?</h5>
+                      <p>{{ recommendation.reasonForRecommendation }}</p>
+                      
+                      <h5>Alternative Dates</h5>
+                      <ul class="list-group">
+                        <li *ngFor="let date of recommendation.alternativeDates" class="list-group-item">
+                          {{ formatDate(date) }}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Demand Forecast -->
+            <div *ngIf="showForecast && forecast" class="mt-4">
+              <div class="card border-info">
+                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                  <h4 class="mb-0">Demand Forecast for {{ forecast.year }}</h4>
+                  <span class="badge" [ngClass]="getConfidenceBadgeClass()">
+                    {{ forecast.confidence_level }} Confidence
+                  </span>
+                </div>
+                <div class="card-body">
+                  <p>Expected total reservations: <strong>{{ forecast.predicted_total }}</strong></p>
+                  
+                  <!-- Add chart or visualization here if needed -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
