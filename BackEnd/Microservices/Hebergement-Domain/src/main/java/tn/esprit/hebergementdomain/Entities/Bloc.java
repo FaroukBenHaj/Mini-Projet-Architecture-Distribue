@@ -19,6 +19,10 @@ public class Bloc {
         this.capaciteBloc = capaciteBloc;
     }
 
+    public Bloc() {
+
+    }
+
     public long getIdBloc() {
         return idBloc;
     }

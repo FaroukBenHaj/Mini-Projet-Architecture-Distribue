@@ -1,9 +1,0 @@
-com\example\microservicenada\Services\UniversiteService.class
-com\example\microservicenada\Controllers\FoyerController.class
-com\example\microservicenada\MicroserviceNadaApplication.class
-com\example\microservicenada\Entities\Universite.class
-com\example\microservicenada\Controllers\ControllerUniversite.class
-com\example\microservicenada\Repositories\FoyerRepository.class
-com\example\microservicenada\Repositories\UniversiteRepository.class
-com\example\microservicenada\Services\FoyerService.class
-com\example\microservicenada\Entities\Foyer.class

@@ -1,0 +1,170 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="container">
+      <div class="header-content">
+        <div>
+          <h1><i class="fas fa-user-graduate"></i> Gestion des Étudiants</h1>
+          <p>Consultez, ajoutez, modifiez ou supprimez des informations sur les étudiants.</p>
+        </div>
+        <button class="btn" [ngClass]="showForm ? 'btn-secondary' : 'btn-primary'" (click)="toggleForm()">
+          <i class="fas" [ngClass]="showForm ? 'fa-times' : 'fa-plus'"></i>
+          {{ showForm ? 'Annuler' : (isEditMode ? 'Annuler la modification' : 'Ajouter un étudiant') }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Messages -->
+    <div class="alert alert-success" *ngIf="successMessage">
+      <i class="fas fa-check-circle"></i> {{ successMessage }}
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+    </div>
+
+    <!-- Formulaire d'ajout/modification -->
+    <div class="form-section" [class.active]="showForm">
+      <div class="card">
+        <h2>{{ isEditMode ? 'Modifier un étudiant' : 'Ajouter un nouvel étudiant' }}</h2>
+        <form [formGroup]="etudiantForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nomEt" class="form-label">Nom</label>
+              <input type="text" id="nomEt" formControlName="nomEt" class="form-control" 
+                [ngClass]="{'invalid': etudiantForm.controls['nomEt'].invalid && etudiantForm.controls['nomEt'].touched}">
+              <div class="error-message" *ngIf="etudiantForm.controls['nomEt'].invalid && etudiantForm.controls['nomEt'].touched">
+                Le nom est requis.
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="prenomEt" class="form-label">Prénom</label>
+              <input type="text" id="prenomEt" formControlName="prenomEt" class="form-control"
+                [ngClass]="{'invalid': etudiantForm.controls['prenomEt'].invalid && etudiantForm.controls['prenomEt'].touched}">
+              <div class="error-message" *ngIf="etudiantForm.controls['prenomEt'].invalid && etudiantForm.controls['prenomEt'].touched">
+                Le prénom est requis.
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cin" class="form-label">CIN</label>
+              <input type="text" id="cin" formControlName="cin" class="form-control"
+                [ngClass]="{'invalid': etudiantForm.controls['cin'].invalid && etudiantForm.controls['cin'].touched}">
+              <div class="error-message" *ngIf="etudiantForm.controls['cin'].invalid && etudiantForm.controls['cin'].touched">
+                <span *ngIf="etudiantForm.controls['cin'].errors?.['required']">Le CIN est requis.</span>
+                <span *ngIf="etudiantForm.controls['cin'].errors?.['pattern']">Le CIN doit contenir uniquement des chiffres.</span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="ecole" class="form-label">École</label>
+              <input type="text" id="ecole" formControlName="ecole" class="form-control"
+                [ngClass]="{'invalid': etudiantForm.controls['ecole'].invalid && etudiantForm.controls['ecole'].touched}">
+              <div class="error-message" *ngIf="etudiantForm.controls['ecole'].invalid && etudiantForm.controls['ecole'].touched">
+                L'école est requise.
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dateNaissance" class="form-label">Date de naissance</label>
+              <input type="date" id="dateNaissance" formControlName="dateNaissance" class="form-control"
+                [ngClass]="{'invalid': etudiantForm.controls['dateNaissance'].invalid && etudiantForm.controls['dateNaissance'].touched}">
+              <div class="error-message" *ngIf="etudiantForm.controls['dateNaissance'].invalid && etudiantForm.controls['dateNaissance'].touched">
+                La date de naissance est requise.
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn btn-outline" (click)="resetForm()">Annuler</button>
+            <button type="submit" class="btn btn-primary" [disabled]="etudiantForm.invalid || isLoading">
+              <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+              {{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}
+            </button>
+          </div>
+          
+          <!-- POP-UP DE SUCCÈS (centrée et hors du flux de la page) -->
+          <div class="popup-overlay" *ngIf="showSuccessPopup">
+            <div class="popup-content">
+              <h2>🎉 Bienvenue {{ etudiantAjouteNom }} !</h2>
+              <p>L’étudiant a été ajouté avec succès.</p>
+              <button class="btn btn-success" (click)="closeSuccessPopup()">OK</button>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+
+    <!-- Liste des étudiants -->
+    <div class="list-section">
+      <div class="list-header">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Rechercher un étudiant..." [(ngModel)]="searchTerm">
+          <button *ngIf="searchTerm" (click)="searchTerm = ''">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="list-count">
+          {{ filteredEtudiants.length }} {{ filteredEtudiants.length > 1 ? 'étudiants' : 'étudiant' }}
+        </div>
+      </div>
+
+      <div class="loading-spinner" *ngIf="isLoading">
+        <i class="fas fa-spinner fa-spin"></i>
+        <span>Chargement...</span>
+      </div>
+
+      <div class="empty-state" *ngIf="!isLoading && filteredEtudiants.length === 0">
+        <div class="empty-icon">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <h3>Aucun étudiant trouvé</h3>
+        <p *ngIf="searchTerm">Aucun résultat pour "{{ searchTerm }}". Essayez une autre recherche.</p>
+        <p *ngIf="!searchTerm">Commencez par ajouter votre premier étudiant.</p>
+        <button class="btn btn-primary" (click)="showForm = true" *ngIf="!showForm">
+          <i class="fas fa-plus"></i> Ajouter un étudiant
+        </button>
+      </div>
+
+      <div class="cards-list" *ngIf="!isLoading && filteredEtudiants.length > 0">
+        <div class="student-card" *ngFor="let etudiant of filteredEtudiants">
+          <div class="student-info">
+            <div class="student-avatar">
+              {{ etudiant.nomEt?.charAt(0) || '?' }}{{ etudiant.prenomEt?.charAt(0) || '?' }}
+            </div>
+            <div class="student-details">
+              <h3>{{ etudiant.nomEt || 'Sans nom' }} {{ etudiant.prenomEt || '' }}</h3>
+              <div class="student-meta">
+                <span class="student-cin">
+                  <i class="fas fa-id-card"></i> {{ etudiant.cin || 'N/A' }}
+                </span>
+                <span class="student-school">
+                  <i class="fas fa-university"></i> {{ etudiant.ecole || 'Non spécifié' }}
+                </span>
+                <span class="student-dob">
+                  <i class="fas fa-birthday-cake"></i> 
+                  {{ etudiant.dateNaissance ? (etudiant.dateNaissance | date:'dd/MM/yyyy') : 'Non spécifié' }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="student-actions">
+            <button class="btn-icon" (click)="editEtudiant(etudiant)" title="Modifier">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn-icon delete" (click)="deleteEtudiant(etudiant.idEtudiant || 0)" title="Supprimer">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

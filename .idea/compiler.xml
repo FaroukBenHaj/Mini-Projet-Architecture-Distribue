@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -10,23 +11,13 @@
         <module name="Hebergement-Domain" />
         <module name="reservation" />
         <module name="ConfigServer" />
+        <module name="Payement" />
+        <module name="Keycloak" />
         <module name="Eureka" />
         <module name="gateway" />
         <module name="MicroserviceNada" />
       </profile>
-      <profile name="Annotation profile for Payement" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-        </processorPath>
-        <module name="Payement" />
-      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="demo" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -34,9 +25,9 @@
       <module name="Etudiant" options="-parameters" />
       <module name="Eureka" options="-parameters" />
       <module name="Hebergement-Domain" options="-parameters" />
+      <module name="Keycloak" options="-parameters" />
       <module name="MicroserviceNada" options="-parameters" />
       <module name="Payement" options="-parameters" />
-      <module name="demo" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="reservation" options="-parameters" />
     </option>

@@ -1,0 +1,99 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="container">
+      <div class="header-content">
+        <h1>Gestion des paiements</h1>
+        <button class="btn" [ngClass]="showForm ? 'btn-secondary' : 'btn-primary'" (click)="toggleForm()">
+          <i class="fas" [ngClass]="showForm ? 'fa-times' : 'fa-plus'"></i>
+          {{ showForm ? 'Annuler' : (isEditMode ? 'Annuler la modification' : 'Ajouter un paiement') }}
+        </button>
+        <!-- POP-UP -->
+<div class="popup-overlay" *ngIf="showPopup">
+  <div class="popup-content">
+    <h2>🎉 Félicitations !</h2>
+    <p>Vous avez regler votre situation.</p>
+    <button class="btn btn-success" (click)="closePopup()">OK</button>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Messages -->
+    <div class="alert alert-success" *ngIf="successMessage">
+      <i class="fas fa-check-circle"></i> {{ successMessage }}
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+    </div>
+
+    <!-- Formulaire d'ajout/modification -->
+    <div class="form-section" [class.active]="showForm">
+      <div class="card">
+        <h2>{{ isEditMode ? 'Modifier un paiement' : 'Ajouter un paiement' }}</h2>
+        <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="montant" class="form-label">Montant</label>
+            <input type="number" id="montant" formControlName="montant" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="datePaiement" class="form-label">Date de paiement</label>
+            <input type="date" id="datePaiement" formControlName="datePaiement" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="status" class="form-label">Status</label>
+            <input type="text" id="status" formControlName="status" class="form-control">
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-outline" (click)="toggleForm()">Annuler</button>
+            <button type="submit" class="btn btn-primary" [disabled]="paymentForm.invalid">
+              {{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+<!-- Liste des paiements -->
+<div class="list-section">
+  <div class="list-header">
+    <div class="search-box">
+      <input type="text" placeholder="Rechercher un paiement..." [(ngModel)]="searchTerm">
+    </div>
+    <div class="filter-box">
+      <select [(ngModel)]="selectedStatus" class="status-filter">
+        <option value="">--Filtrer par statut--</option>
+        <option value="PAYE">PAYE</option>
+        <option value="EN_COURS">EN_COURS</option>
+        <option value="ECHEC">ECHEC</option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="filteredPayments.length === 0">
+    <p>Aucun paiement trouvé.</p>
+  </div>
+
+  <div class="cards-list" *ngIf="filteredPayments.length > 0">
+    <div class="payment-card" *ngFor="let payment of filteredPayments">
+      <div class="payment-info">
+        <p><strong>Montant:</strong> {{ payment.montant }}</p>
+        <p><strong>Date:</strong> {{ payment.datePaiement }}</p>
+        <p><strong>Status:</strong> {{ payment.status }}</p>
+      </div>
+      <div class="payment-actions">
+        <button (click)="editPayment(payment)">Modifier</button>
+        <button (click)="deletePayment(payment.idPayment ?? 0)">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+</div>

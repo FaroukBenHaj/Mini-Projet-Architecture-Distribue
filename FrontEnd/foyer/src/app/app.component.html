@@ -1,3 +1,18 @@
+<div class="app-container">
+  <app-navbar></app-navbar>
 
+  <main class="main-content">
+    <router-outlet></router-outlet> <!-- This is where routed components will appear -->
+  </main>
 
-<router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>
+
+<!-- POP-UP -->
+<div class="popup-overlay" *ngIf="showPopup">
+  <div class="popup-content">
+    <h2>🎉 Félicitations !</h2>
+    <p>Un nouveau paiement peut être ajouté.</p>
+    <button class="btn btn-success" (click)="closePopup()">OK</button>
+  </div>
+</div>

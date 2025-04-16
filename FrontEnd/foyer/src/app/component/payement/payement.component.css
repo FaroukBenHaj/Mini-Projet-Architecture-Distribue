@@ -1,0 +1,93 @@
+/* Animation de glissement en entrée pour chaque paiement */
+.payment-card {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  /* Amélioration du bouton Ajouter / Annuler */
+  .btn-primary, .btn-secondary {
+    padding: 0.6rem 1.4rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary {
+    background-color: #007AFF;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #005FCC;
+  }
+  
+  .btn-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #c2c2c2;
+  }
+  
+  /* Animation d’ouverture du formulaire */
+  .form-section {
+    animation: fadeIn 0.4s ease-in-out;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+  }
+  
+  /* Filtres */
+  .filter-box {
+    max-width: 200px;
+  }
+  
+  .status-filter {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color, #ddd);
+    background-color: #f5f5f7;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+  
+  /* Boutons dans .payment-actions */
+  .payment-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #007aff10;
+    color: #007AFF;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .payment-actions button:hover {
+    background-color: #007AFF;
+    color: white;
+  }
+  
+  /* Alertes */
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  /* Amélioration container principal */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  

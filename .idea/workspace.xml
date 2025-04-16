@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c3a7dc29-3a22-4762-bd85-6c8671a46691" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/ConfigServer/src/main/resources/config/FoyerUniversite.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/ConfigServer/src/main/resources/config/FoyerUniversite.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/ConfigServer/src/main/resources/config/Payement.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/ConfigServer/src/main/resources/config/Payement.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/src/main/java/tn/esprit/etudiant/Etudiant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/src/main/java/tn/esprit/etudiant/EtudiantApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/src/main/java/tn/esprit/etudiant/EtudiantApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/src/main/java/tn/esprit/etudiant/EtudiantRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/src/main/java/tn/esprit/etudiant/EtudiantRestAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Etudiant/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/java/com/example/microservicenada/Controllers/ControllerFoyer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/java/com/example/microservicenada/Controllers/ControllerUniversite.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/java/com/example/microservicenada/Entities/Universite.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/java/com/example/microservicenada/MicroserviceNadaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/java/com/example/microservicenada/Repositories/FoyerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/java/com/example/microservicenada/Repositories/UniversiteRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/java/com/example/microservicenada/Services/FoyerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/java/com/example/microservicenada/Services/UniversiteService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/src/test/java/com/example/microservicenada/MicroserviceNadaApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/com/example/microservicenada/Controllers/ControllerUniversite.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/com/example/microservicenada/Controllers/FoyerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/com/example/microservicenada/Entities/Foyer.class" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/com/example/microservicenada/Entities/Foyer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/com/example/microservicenada/Entities/Universite.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/com/example/microservicenada/MicroserviceNadaApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/com/example/microservicenada/Repositories/FoyerRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/com/example/microservicenada/Repositories/UniversiteRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/com/example/microservicenada/Services/FoyerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/classes/com/example/microservicenada/Services/UniversiteService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/surefire-reports/TEST-com.example.microservicenada.MicroserviceNadaApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/surefire-reports/com.example.microservicenada.MicroserviceNadaApplicationTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Foyer-Universite-Domain/target/test-classes/com/example/microservicenada/MicroserviceNadaApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Controllers/BlocRestApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Controllers/ChambreRestApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Entities/Bloc.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Entities/Bloc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/HebergementDomainApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Reposiitories/BlocRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Reposiitories/BlocRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Reposiitories/ChambreRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Services/BlocService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Services/BlocService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Services/ChambreService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/java/tn/esprit/hebergementdomain/Services/IChambreService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Hebergement-Domain/src/test/java/tn/esprit/hebergementdomain/HebergementDomainApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Payement/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Payement/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Microservices/Payement/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Microservices/Payement/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Data/Reservation.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Data/Reservation.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/.vscode/tasks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/foyer/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/foyer/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/foyer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/foyer/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/foyer/src/app/app.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/foyer/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/foyer/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/foyer/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/foyer/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/foyer/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/foyer/src/styles.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2vmrwPVe1Wz9QYhGtr2aiDMbvGN" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.BackEnd: Compose Deployment.executor": "Run",
+    "Maven.ConfigServer [clean,install].executor": "Run",
+    "Maven.Eureka [clean].executor": "Run",
+    "Maven.Eureka [install].executor": "Run",
+    "Maven.Hebergement-Domain [clean].executor": "Run",
+    "Maven.Hebergement-Domain [install].executor": "Run",
+    "Maven.Keycloak [clean].executor": "Run",
+    "Maven.Keycloak [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.ConfigServer.executor": "Run",
+    "Spring Boot.Etudiant.executor": "Run",
+    "Spring Boot.Eureka.executor": "Run",
+    "Spring Boot.Gateway.executor": "Run",
+    "Spring Boot.Hebergement.executor": "Run",
+    "Spring Boot.KeycloakApplication.executor": "Run",
+    "Spring Boot.Payement.executor": "Run",
+    "Spring Boot.ReservationApplication.executor": "Run",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/medfa/Desktop/Cycle_ingenieur/Esprit/4SAE5/architecture_web_distribue/Mini-Projet-Architecture-Distribue/Mini-Projet-Architecture-Distribue/BackEnd/ConfigServer/src/main/resources/config",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "ts.external.directory.path": "C:\\Users\\medfa\\Desktop\\Cycle_ingenieur\\Esprit\\4SAE5\\architecture_web_distribue\\Mini-Projet-Architecture-Distribue\\Mini-Projet-Architecture-Distribue\\FrontEnd\\foyer\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="tn.esprit.hebergementdomain.Services" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\medfa\Desktop\Cycle_ingenieur\Esprit\4SAE5\architecture_web_distribue\Mini-Projet-Architecture-Distribue\Mini-Projet-Architecture-Distribue\BackEnd\ConfigServer\src\main\resources\config" />
+      <recent name="C:\Users\medfa\Desktop\Cycle_ingenieur\Esprit\4SAE5\architecture_web_distribue\Mini-Projet-Architecture-Distribue\Mini-Projet-Architecture-Distribue\FrontEnd\foyer\src\app\models" />
+      <recent name="C:\Users\medfa\Desktop\Cycle_ingenieur\Esprit\4SAE5\architecture_web_distribue\Mini-Projet-Architecture-Distribue\Mini-Projet-Architecture-Distribue\FrontEnd\foyer\src\app\Keycloak" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\medfa\Desktop\Cycle_ingenieur\Esprit\4SAE5\architecture_web_distribue\Mini-Projet-Architecture-Distribue\Mini-Projet-Architecture-Distribue\FrontEnd\foyer\src\app\Keycloak" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+      <command value="mvn clean install " />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Hebergement">
+    <configuration name="ConfigServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ConfigServer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.configserver.ConfigServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Etudiant" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Etudiant" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.etudiant.EtudiantApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Eureka" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Eureka" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.eureka.EurekaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Gateway" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="esprit.gateway.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Hebergement" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Hebergement-Domain" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.hebergementdomain.HebergementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KeycloakApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Keycloak" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.keycloak.KeycloakApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Payement" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Payement" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.PayementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReservationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="reservation" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.reservation.ReservationApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BackEnd: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="BackEnd/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.BackEnd: Compose Deployment" />
+      <item itemvalue="Spring Boot.KeycloakApplication" />
+      <item itemvalue="Spring Boot.ReservationApplication" />
+      <item itemvalue="Spring Boot.ConfigServer" />
+      <item itemvalue="Spring Boot.Etudiant" />
+      <item itemvalue="Spring Boot.Eureka" />
+      <item itemvalue="Spring Boot.Gateway" />
+      <item itemvalue="Spring Boot.Payement" />
+      <item itemvalue="Spring Boot.Hebergement" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.BackEnd: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c3a7dc29-3a22-4762-bd85-6c8671a46691" name="Changes" comment="" />
+      <created>1744761327630</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744761327630</updated>
+      <workItem from="1744761328795" duration="1408000" />
+      <workItem from="1744798638711" duration="17535000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
