@@ -1,0 +1,144 @@
+<div class="page-container">
+    <div class="page-header">
+      <div class="container">
+        <div class="header-content">
+          <div>
+            <h1><i class="fas fa-bullhorn"></i> Gestion des Annonces</h1>
+            <p>Consultez, ajoutez, modifiez, supprimez ou désactivez des annonces.</p>
+          </div>
+          <button class="btn" [ngClass]="showForm ? 'btn-secondary' : 'btn-primary'" (click)="toggleForm()">
+            <i class="fas" [ngClass]="showForm ? 'fa-times' : 'fa-plus'"></i>
+            {{ showForm ? 'Annuler' : (isEditMode ? 'Annuler la modification' : 'Ajouter une annonce') }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="alert alert-success" *ngIf="successMessage">
+        <i class="fas fa-check-circle"></i> {{ successMessage }}
+      </div>
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+      </div>
+      <div class="form-section" [class.active]="showForm">
+        <div class="card">
+          <h2>{{ isEditMode ? 'Modifier une annonce' : 'Ajouter une nouvelle annonce' }}</h2>
+          <form [formGroup]="announcementForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="title" class="form-label">Titre</label>
+                <input type="text" id="title" formControlName="title" class="form-control" [ngClass]="{'invalid': announcementForm.controls['title'].invalid && announcementForm.controls['title'].touched}">
+                <div class="error-message" *ngIf="announcementForm.controls['title'].invalid && announcementForm.controls['title'].touched">
+                  Le titre est requis.
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="content" class="form-label">Contenu</label>
+                <textarea id="content" formControlName="content" class="form-control" rows="4" [ngClass]="{'invalid': announcementForm.controls['content'].invalid && announcementForm.controls['content'].touched}"></textarea>
+                <div class="error-message" *ngIf="announcementForm.controls['content'].invalid && announcementForm.controls['content'].touched">
+                  Le contenu est requis.
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="type" class="form-label">Type</label>
+                <select id="type" formControlName="type" class="form-control" [ngClass]="{'invalid': announcementForm.controls['type'].invalid && announcementForm.controls['type'].touched}">
+                  <option value="">Sélectionnez un type</option>
+                  <option *ngFor="let t of announcementTypes" [value]="t">{{ t }}</option>
+                </select>
+                <div class="error-message" *ngIf="announcementForm.controls['type'].invalid && announcementForm.controls['type'].touched">
+                  Le type est requis.
+                </div>
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" id="isActive" formControlName="isActive" class="form-check-input">
+                <label for="isActive" class="form-check-label">Active</label>
+              </div>
+              
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline" (click)="resetForm()">Annuler</button>
+              <button type="submit" class="btn btn-primary" [disabled]="announcementForm.invalid || isLoading">
+                <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+                {{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}
+              </button>
+            </div>
+            <div class="popup-overlay" *ngIf="showSuccessPopup">
+              <div class="popup-content">
+                <h2>🎉 Annonce ajoutée : {{ announcementAddedTitle }}</h2>
+                <p>L’annonce a été ajoutée avec succès.</p>
+                <button class="btn btn-success" (click)="showSuccessPopup = false">OK</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="list-section">
+        <div class="list-header">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Rechercher une annonce..." [(ngModel)]="searchTerm">
+            <button *ngIf="searchTerm" (click)="searchTerm = ''">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="list-count">
+            {{ filteredAnnouncements.length }} {{ filteredAnnouncements.length > 1 ? 'annonces' : 'annonce' }}
+          </div>
+        </div>
+        <div class="loading-spinner" *ngIf="isLoading">
+          <i class="fas fa-spinner fa-spin"></i>
+          <span>Chargement...</span>
+        </div>
+        <div class="empty-state" *ngIf="!isLoading && filteredAnnouncements.length === 0">
+          <div class="empty-icon">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+          <h3>Aucune annonce trouvée</h3>
+          <p *ngIf="searchTerm">Aucun résultat pour "{{ searchTerm }}".</p>
+          <p *ngIf="!searchTerm">Commencez par ajouter votre première annonce.</p>
+          <button class="btn btn-primary" (click)="showForm = true" *ngIf="!showForm">
+            <i class="fas fa-plus"></i> Ajouter une annonce
+          </button>
+        </div>
+        <div class="cards-list" *ngIf="!isLoading && filteredAnnouncements.length > 0">
+          <div class="student-card" *ngFor="let a of filteredAnnouncements">
+            <div class="student-info">
+              <div class="student-avatar">
+                {{ a.title.charAt(0) }}
+              </div>
+              <div class="student-details">
+                <h3>{{ a.title }}</h3>
+                <div class="student-meta">
+                  <span>
+                    <i class="fas fa-align-left"></i> {{ a.content | slice:0:50 }}...
+                  </span>
+                  <span>
+                    <i class="fas fa-tag"></i> {{ a.type }}
+                  </span>
+                  <span>
+                    <i class="fas fa-clock"></i> {{ a.createdAt | date:'dd/MM/yyyy' }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="student-actions">
+              <button class="btn-icon" (click)="editAnnouncement(a)" title="Modifier">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn-icon delete" (click)="deleteAnnouncement(a.id || 0)" title="Supprimer">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+              <button class="btn-icon" (click)="deactivateAnnouncement(a.id || 0)" title="Désactiver">
+                <i class="fas fa-ban"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

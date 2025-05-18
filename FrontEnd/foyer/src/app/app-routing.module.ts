@@ -4,10 +4,12 @@ import { ReservationAiComponent } from './ReservationDomain/reservation-ai/reser
 import { HomePageComponent } from './home-page/home-page.component';
 import { EtudiantComponent } from './component/etudiant/etudiant.component';
 import { PaymentComponent } from './component/payement/payement.component';
+import { AnnouncementComponent } from './component/announcement/announcement.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'etudiants', component: EtudiantComponent },
+  { path: 'announcement', component: AnnouncementComponent },
   { path: 'paiements', component: PaymentComponent },
   { path: 'reservation-ai', component: ReservationAiComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect root to /home

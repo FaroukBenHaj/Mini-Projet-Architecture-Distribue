@@ -15,9 +15,8 @@ import {KeycloakService} from "./Keycloak/keycloak.service";
 import {RouterModule} from "@angular/router";
 import {HomePageComponent} from "./component/home-page/home-page.component";
 import { BlocComponent } from './component/bloc/bloc.component';
-export function kcFactory(kcService: KeycloakService){
-  return () => kcService.init();
-}
+import { AnnouncementComponent } from './component/announcement/announcement.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +26,8 @@ export function kcFactory(kcService: KeycloakService){
     FooterComponent,
     PaymentComponent,
     HomePageComponent,
-    BlocComponent // Removed duplicate declaration
+    BlocComponent,
+    AnnouncementComponent 
   ],
   imports: [
     BrowserModule,
@@ -37,18 +37,8 @@ export function kcFactory(kcService: KeycloakService){
     FormsModule
   ],
   providers: [
-    HttpClient,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpTokenInterceptorInterceptor,
-      multi: true
-    },
-    {
-      provide: APP_INITIALIZER,
-      deps: [KeycloakService],
-      useFactory: kcFactory,
-      multi: true
-    }
+    HttpClient
+    
   ],
   bootstrap: [AppComponent]
 })
